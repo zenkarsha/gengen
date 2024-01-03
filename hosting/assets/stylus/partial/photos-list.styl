@@ -1,0 +1,43 @@
+.photos-list
+  display flex
+  flex-wrap wrap
+  align-items center
+
+  +above($tablet)
+    margin-left -1 * 16px
+    margin-right -1 * 16px
+
+  .empty-list
+    margin 16px
+
+  .list-item
+    width 100%
+    height auto
+    margin 16px 0
+    position relative
+    background-image url(/images/pattern.png)
+    background-size 20px 20px
+    background-repeat repeat
+    +above($tablet)
+      width "calc(100% / 2 - %s)" % 32px
+      margin 16px
+    +above($desktop)
+      width "calc(100% / 3 - %s)" % 32px
+      margin 16px
+    &:before
+      content ''
+      float left
+      padding-top 100%
+    .image
+      position absolute
+      top 8px
+      left 8px
+      width "calc(100% - %s)" % (8px * 2)
+      height 0
+      padding-top "calc(100% - %s)" % (8px * 2)
+      background-size contain
+      background-position center center
+      background-repeat no-repeat
+      cursor pointer
+    .tool-buttons
+      __tool-buttons()

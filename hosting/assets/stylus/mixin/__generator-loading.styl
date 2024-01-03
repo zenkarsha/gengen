@@ -1,0 +1,47 @@
+__generator-loading()
+  width calc(100% + 96px)
+  height calc(100% + 96px)
+  top -48px
+  left -48px
+  position absolute
+  display flex
+  justify-content center
+  align-items center
+  background rgba(0, 0, 0, .5)
+  opacity 0
+  z-index 100
+  transition opacity .25s ease-in-out
+  &.on
+    opacity 1
+  .spinner
+    & > div
+      width 18px
+      height 18px
+      margin 0 3px
+      background-color $color-yellow
+  +below($tablet)
+    width calc(100% + 48px)
+    height calc(100% + 48px)
+    top -24px
+    left -24px
+
+generator-loading-full()
+  width 100%
+  height 100%
+  top 0
+  left 0
+  position absolute
+  justify-content center
+  align-items center
+  background rgba(0, 0, 0, .5)
+  z-index 100
+  transition opacity .25s ease-in-out
+  display none
+  &.on
+    display flex
+  .spinner
+    & > div
+      width 18px
+      height 18px
+      margin 0 3px
+      background-color $color-yellow

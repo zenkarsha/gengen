@@ -1,0 +1,154 @@
+.feed-list
+  padding 16px 0
+
+  .list
+    display flex
+    flex-wrap wrap
+    align-items stretch
+    &.center
+      justify-content center
+    +above($tablet)
+      margin-left -1 * 16px
+      margin-right -1 * 16px
+
+  .list-item
+    display flex
+    align-items stretch
+    margin 16px
+    width 100%
+    +above($mobile-landscape)
+      width "calc(100% / 2 - %s)" % 32px
+    +above($tablet)
+      width "calc(100% / 3 - %s)" % 32px
+    +above($desktop)
+      width "calc(100% / 4 - %s)" % 32px
+    .item-wrapper
+      width 100%
+      border-radius $s-radius
+      position relative
+      &:hover .item-buttons
+        z-index 100
+        opacity 1
+      a
+        width 100%
+        display flex
+        flex-wrap wrap
+      .item-label
+        position absolute
+        display block
+        opacity 1
+        transition opacity .5s
+        display flex
+        top 8px
+        right 8px
+        z-index 100
+        display none
+        .new
+          padding 6px 12px
+          border-radius $m-radius
+          color $color-white
+          background black
+      .item-buttons
+        position absolute
+        bottom 8px
+        left 8px
+        z-index -1
+        opacity 0
+        transition all $t-sec
+        span
+          __block-shadow()
+          background $color-white
+          border-radius $m-radius
+          padding 8px 8px
+          margin-right 4px
+          display inline-block
+          &:last-child
+            margin-right 0
+          &:hover
+            background lighten($color-gray, 60%)
+        +below($desktop)
+          opacity 1
+          z-index 100
+          left 0
+          bottom 0
+          width 100%
+          display flex
+          justify-content space-between
+          align-items center
+          background rgba(0,0,0,.75)
+          border-bottom-left-radius $l-radius
+          border-bottom-right-radius $l-radius
+          span
+            width 100%
+            border none
+            text-align center
+            color $color-white
+            background none
+            padding 12px 0
+            margin 0
+            border-radius 0
+            box-shadow none
+            &:hover
+              background none
+    .item-image-wrapper
+      __block-shadow()
+      display flex
+      justify-content center
+      align-items flex-end
+      position relative
+      width 100%
+      height 100%
+      overflow hidden
+      background $color-white
+      border-radius $m-radius
+      overflow hidden
+    .item-image
+      width 100%
+      height 0
+      padding-top 100%
+      background-size cover
+      background-position center
+      background-repeat no-repeat
+      cursor pointer
+
+  .show-more-button
+    text-align center
+    margin auto
+    padding-bottom 32px
+
+  .list.placeholder
+    position relative
+    .list-item
+      .item-image
+        background-image url(/images/feed-placeholder.jpg)
+        &:hover
+          transform scale(1)
+      .item-creator, .item-visit-count
+        width 40%
+        &:before
+          display none
+
+  &.overview
+    .list
+      margin -8px -8px 16px -8px
+    .list-item
+      width "calc(100% / 2 - %s)" % 16px
+      margin 8px
+      margin-bottom 16px
+      .item-buttons
+      .item-label
+        display none
+      .item-image-wrapper
+        border-radius $s-radius
+      +above($tablet)
+        width "calc(100% / 4 - %s)" % 16px
+        margin 8px
+        &:nth-child(5)
+        &:nth-child(6)
+          display none
+      +above($desktop)
+        width "calc(100% / 6 - %s)" % 16px
+        margin 8px
+        &:nth-child(5)
+        &:nth-child(6)
+          display flex

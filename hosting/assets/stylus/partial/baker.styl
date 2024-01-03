@@ -1,0 +1,146 @@
+.baker
+  left 0%
+  top 20px
+  position relative
+  z-index 50000
+  width 60%
+  height 100%
+  margin-right 25%
+  opacity 0
+  transform scale(.8)
+  animation baker-appear .3s ease-in-out 1
+  animation-delay .5s
+  animation-fill-mode forwards
+  user-select none
+  pointer-events none
+
+  +below($desktop)
+    width 100%
+
+  +below($tablet)
+    display none
+
+  *
+    user-select none
+    pointer-events none
+
+  .baker-machine
+  .baker-machine-mask
+  .baker-foot
+  .baker-faceplate-1
+  .baker-faceplate-2
+  .baker-button-1
+  .baker-button-2
+  .baker-screen
+  .baker-screen-on
+  .baker-control-bar
+  .baker-control-button
+  .baker-card-1
+  .baker-card-2
+  .baker-card-3
+    width auto
+    height 100%
+    position absolute
+    top 0
+    left 0
+    img
+      width auto
+      height 100%
+
+  .baker-machine
+    z-index 100
+
+  .baker-machine-mask
+    z-index 120
+
+  .baker-foot
+    z-index 90
+    animation baker-foot-move 1s ease-in-out 1
+    animation-delay 2.5s
+    animation-fill-mode forwards
+
+  .baker-faceplate-1
+    z-index 121
+    animation baker-faceplate-1-move 1s ease-in-out 1
+    animation-delay 2.5s
+    animation-fill-mode forwards
+
+  .baker-faceplate-2
+    z-index 122
+    animation baker-faceplate-2-move 1s ease-in-out 1
+    animation-delay 2.5s
+    animation-fill-mode forwards
+
+  .baker-button-1
+    z-index 123
+    animation baker-button-1-move 1s ease-in-out 1
+    animation-delay 2.5s
+    animation-fill-mode forwards
+
+  .baker-button-2
+    z-index 123
+    animation baker-button-2-move 1s ease-in-out 1
+    animation-delay 2.5s
+    animation-fill-mode forwards
+
+  .baker-screen
+    z-index 124
+    animation baker-screen-move 4s ease-in-out 1
+    animation-delay 2.5s
+    animation-fill-mode forwards
+
+  .baker-screen-on
+    z-index 125
+    animation baker-screen-on-move 1.5s ease-in-out infinite
+    animation-delay 4s
+    animation-fill-mode forwards
+    opacity 0
+    top -85px
+    left 85px
+    background-image url('/images/baker/screen-on-1.png')
+    background-size contain
+    img
+      opacity 0
+
+  .baker-control-bar
+    z-index 126
+    animation baker-control-bar-move 1s ease-in-out 1
+    animation-delay 2.5s
+    animation-fill-mode forwards
+
+  .baker-control-button
+    z-index 127
+    animation baker-control-button-move 2s ease-in-out 1
+    animation-delay 2.5s
+    animation-fill-mode forwards
+
+  .baker-cards
+    opacity 0
+    transform scale(.8)
+    animation baker-appear .3s ease-in-out 1
+    animation-delay 4s
+    animation-fill-mode forwards
+    width auto
+    height 100%
+    position absolute
+    top 0
+    left 0
+    z-index 110
+
+  .baker-card-1
+    z-index 110
+    animation baker-card-jump-1 3s ease-in-out infinite
+    animation-delay 4.5s
+    top -50px
+
+  .baker-card-2
+    z-index 111
+    animation baker-card-jump-2 3s ease-in-out infinite
+    animation-delay 4.5s
+    top -90px
+
+  .baker-card-3
+    z-index 112
+    animation baker-card-jump-3 3s ease-in-out infinite
+    animation-delay 4.5s
+    top -130px

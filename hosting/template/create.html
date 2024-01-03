@@ -1,0 +1,81 @@
+---
+permalink: /template/create.html
+---
+
+<div class="template-wrapper create-page" v-show="confirm_user_terms">
+  <div class="container">
+    <div class="section page-header center no-border">
+      <div class="header-wrapper center">
+        <h1 v-text="$t('nav.create')"></h1>
+      </div>
+    </div>
+  </div>
+  <div class="section create-form">
+    <div class="container medium create-form-wrapper">
+      <div class="form-wrapper">
+        {% include partial/create-form/form-steps.html %}
+        <div v-show="form_step == 0">
+          {% include partial/create-form/template-selector.html %}
+          <div class="step-action">
+            <button type="button" class="button rounded right-button" v-on:click="form_step = 1" :disabled="template == ''">
+              ${$t('button.next_step')}
+              <i class="flaticon-right-arrow padding-left"></i>
+            </button>
+          </div>
+        </div>
+        <div class="form-field" v-show="form_step == 1">
+          {% include partial/create-form/generator-basic.html %}
+          <div class="step-action">
+            <button type="button" class="button gray rounded left-button" v-on:click="form_step = 0">
+              <i class="flaticon-left-arrow padding-right"></i>
+              ${$t('button.previous_step')}
+            </button>
+            <button type="button" class="button rounded right-button" v-on:click="form_step = 2" :disabled="title == '' || description == ''">
+              ${$t('button.next_step')}
+              <i class="flaticon-right-arrow padding-left"></i>
+            </button>
+          </div>
+        </div>
+        <div class="form-field" v-show="form_step == 2">
+          {% include partial/create-form/generator-cover.html %}
+          <div class="step-action">
+            <button type="button" class="button gray rounded left-button" v-on:click="form_step = 1">
+              <i class="flaticon-left-arrow padding-right"></i>
+              ${$t('button.previous_step')}
+            </button>
+            <button type="button" class="button rounded right-button" v-on:click="form_step = 3" :disabled="cover_type == 'custom' && cover == ''">
+              ${$t('button.next_step')}
+              <i class="flaticon-right-arrow padding-left"></i>
+            </button>
+          </div>
+        </div>
+        <div class="form-field" v-show="form_step == 3">
+          {% include partial/create-form/sticker.html %}
+          {% include partial/create-form/avatar.html %}
+          {% include partial/create-form/subtitle.html %}
+          {% include partial/create-form/quote.html %}
+          {% include partial/create-form/cover.html %}
+          {% include partial/create-form/meme.html %}
+          <div class="step-action">
+            <button type="button" class="button gray rounded left-button" v-on:click="form_step = 2">
+              <i class="flaticon-left-arrow padding-right"></i>
+              ${$t('button.previous_step')}
+            </button>
+            <button type="button" class="button rounded right-button" v-on:click="handle_preview" :disabled="(template == 'avatar' && (frame_images.length == 0 || example_image == '')) || (template == 'sticker' && (sticker_images.length == 0 || example_image == '')) || (template == 'subtitle' && (basemap_images.length == 0 || default_text == '')) || (template == 'quote' && (role_images.length == 0 || default_text == '' || role_name == '')) || (template == 'cover' && (frame_images.length == 0 || example_image == '')) || (template == 'meme' && (meme_images.length == 0 || default_bottom_text == ''))">
+              ${$t('button.next_step')}
+              <i class="flaticon-right-arrow padding-left"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div id="default_cover" ref="default_cover" :class="default_cover_color" v-bind:style="[default_cover_color == 'random' ? { background: random_cover_color } : '']">
+        <div class="default-cover-wrapper">
+          <span class="title" v-text="title.trim() == '' ? $t('label.generator_title') : title.substring(0, 30)"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% include partial/create-form/preview-generator.html %}
+
+</div>

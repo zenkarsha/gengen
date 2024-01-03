@@ -1,0 +1,61 @@
+.section.template-selector
+  text-align center
+
+  .templates-wrapper
+    display flex
+    max-width 100%
+    margin auto
+
+  .templates
+    width 100%
+    display flex
+    flex-wrap wrap
+    align-items stretch
+    text-align center
+    white-space nowrap
+    .template-item
+      width calc(25% - 16px)
+      margin 0 8px 16px
+      +below($tablet)
+        width 50%
+        margin 0 0 16px
+      h4
+        margin-bottom 4px
+    .template-radio
+      position relative
+      input[type=radio]
+        width 100%
+        height 100%
+        position absolute
+        z-index 100
+        top 0
+        left 0
+        opacity 0
+        border none
+        background none
+        cursor pointer
+      input[type=radio]:checked + .template-image
+        border 2px solid $color-black
+        background-color $color-yellow
+      .template-image
+        width 100%
+        height 0
+        padding-top 100%
+        background-size contain
+        background-position center
+        background-repeat no-repeat
+        border 2px solid transparent
+        border-radius $m-radius
+        &.avatar
+          background-image: url('/images/template-icon/avatar.png')
+        &.sticker
+          background-image: url('/images/template-icon/sticker.png')
+        &.subtitle
+          background-image: url('/images/template-icon/subtitle.png')
+        &.quote
+          background-image: url('/images/template-icon/quote.png')
+        &.cover
+          background-image: url('/images/template-icon/cover.png')
+        &.meme
+          background-image: url('/images/template-icon/meme.png')
+

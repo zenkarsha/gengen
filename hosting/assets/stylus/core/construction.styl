@@ -1,0 +1,108 @@
+#page
+  width 100vw
+  overflow-x hidden
+
+
+#app
+  margin auto
+
+  &.login
+    background $color-gray-yellow
+    +below($tablet)
+      background $color-white
+      padding 32px
+      min-height 100vh
+
+  &.gen
+  &.official
+    #header
+      padding 12px 0
+      border-bottom 1px solid $color-gray-light
+      box-shadow 0 0 5px 0 rgba(0, 0, 0, 0.15)
+      .logo
+        width 200px
+        height 60px
+        &.en
+          background-image url('/images/logo/logo-en-s.png')
+          background-image url('/images/logo/logo-en-s.svg')
+        &.ja
+          background-image url('/images/logo/logo-ja-s.png')
+          background-image url('/images/logo/logo-ja-s.svg')
+        &.zh_hans
+          background-image url('/images/logo/logo-zh_hans-s.png')
+          background-image url('/images/logo/logo-zh_hans-s.svg')
+        &.zh_hant
+          background-image url('/images/logo/logo-zh_hant-s.png')
+          background-image url('/images/logo/logo-zh_hant-s.svg')
+      .user-avatar
+        width 54px
+        height 54px
+    #main
+      padding-top 85px
+
+
+#main
+  height auto
+  min-height 50vh
+  padding-top 160px
+
+  .login &
+    padding-top 0
+    height 100vh
+
+  +below($tablet)
+    padding-top 104px
+    .login &
+      height auto
+
+
+.container
+  padding: 0 12px
+  max-width: 1620px
+  margin: 0 auto
+
+  +below($tablet)
+    padding 0 8px
+
+  &.no-padding
+    padding 0
+
+  &.medium
+    max-width 80%
+    +below($tablet)
+      max-width 100%
+
+  &.small
+    max-width 66.66%
+    +below($tablet)
+      max-width calc(100% - 16px)
+      padding 0 16px
+
+  &.two-column
+    flex 24
+    display flex
+    +below($tablet)
+      display block
+    .side-nav
+      flex 5
+      padding 24px 12px
+      +below($desktop)
+        flex 7
+      +below($tablet)
+        display block
+        padding 12px 24px
+    .main-content
+      flex 19
+      padding-left 24px
+      +below($desktop)
+        flex 17
+      +below($tablet)
+        display block
+        margin-top 24px
+        padding-left 0
+
+  +tablet()
+    padding: 0 24px
+
+  +desktop()
+    padding: 0 32px

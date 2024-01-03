@@ -1,0 +1,75 @@
+<div class="template-form-fields" v-if="template == 'sticker'">
+  <div class="section template-form sticker">
+    <div class="number-labels">
+      <span class="number example-image" v-on:click="$refs.example_image.click()">
+        <i>1</i>
+        <span v-text="$t('label.upload_example_image')"></span>
+      </span>
+      <span class="number sticker-images" v-on:click="$refs.sticker_images.click()">
+        <i>2</i>
+        <span v-text="$t('label.upload_sticker_image')"></span>
+      </span>
+    </div>
+    <div class="example-image-field"></div>
+    <div class="sticker-images-field" v-on:click="$refs.sticker_images.click()">
+      <span class="handler-nw"></span>
+      <span class="handler-sw"></span>
+      <span class="handler-ne"></span>
+      <span class="handler-se"></span>
+    </div>
+  </div>
+  <div class="fields-column-2 mobile-full-width">
+    <div class="form-group column">
+      <h3 ref="sticker_images_label" v-text="'⓵ ' + $t('label.upload_sticker_image')"></h3>
+      <span class="field-message">${$t('message.sticker_images')}</span>
+      <div class="fileupload-button">
+        <input type="file" v-on:change="local_preview($event, 'sticker_images', 'sticker_images', true)" accept="image/png" ref="sticker_images" multiple>
+        <button type="button" class="button" v-on:click="$refs.sticker_images.click()">
+          <i class="flaticon-upload padding-right"></i>
+          ${$t('button.choose_image')}
+        </button>
+      </div>
+      <div class="local-preview multiple">
+        <div v-for="(image, index) in sticker_images">
+          <div class="image">
+            <img :src="image">
+          </div>
+          <div class="tool-buttons">
+            <cropper :image="image" :enable_resize="true" :ratio_changer="true" :class_name="'button icon gray small rounded'" v-on:update="value => sticker_images.splice(index, 1, value)"></cropper>
+            <button type="button" class="button" v-on:click="array_set_first(sticker_images ,image)" v-if="index != 0">
+              <i class="make-default"></i>
+            </button>
+            <button type="button" class="button" v-on:click="sticker_images.splice(index, 1)">
+              <i class="flaticon-garbage"></i>
+            </button>
+          </div>
+        </div>
+        <div class="add-more" v-on:click="$refs.sticker_images.click()" v-if="sticker_images.length > 0">
+          <div class="image">
+            <img src="/images/upload-placeholder.jpg" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group column">
+      <h3 ref="example_image_label" v-text="'⓶ ' + $t('label.upload_example_image')"></h3>
+      <span class="field-message">${$t('message.sticker_example_image')}</span>
+      <div class="fileupload-button">
+        <input type="file" v-on:change="local_preview($event, 'example_image', 'example_image', false)" accept="image/*" ref="example_image">
+        <button type="button" class="button" v-on:click="$refs.example_image.click()">
+          <i class="flaticon-upload padding-right"></i>
+          ${$t('button.choose_image')}
+        </button>
+      </div>
+      <div class="local-preview" v-if="example_image.length > 0">
+        <div class="image">
+          <img :src="example_image">
+        </div>
+        <div class="tool-buttons">
+          <cropper :image="example_image" :ratio_changer="true" :default_ratio="'3 : 2'" :class_name="'button gray icon small rounded'" v-on:update="value => example_image = value"></cropper>
+        </div>
+      </div>
+    </div>
+  </div>
+  <sticker-position-popup :config="preview_config" v-on:update="value => update_sticker_position(value)" v-on:cancel="show_sticker_popup = false" v-if="show_sticker_popup"></sticker-position-popup>
+</div>

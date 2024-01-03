@@ -1,0 +1,132 @@
+.button
+  display inline-block
+  padding 16px 32px!important
+  background $color-black-dark
+  color $color-white
+  text-decoration none
+  border 0
+  border-radius $m-radius
+  font-size 1rem
+  line-height 1
+  cursor pointer
+  transition background $t-sec
+  margin 8px 0
+  user-select none
+
+  +below($tablet)
+    font-size .75rem
+
+  > i
+    margin auto
+
+  &:hover
+    background lighten($color-black-dark, 20%)
+    color $color-white
+
+  &:focus
+    box-shadow 0 0 0 2px #fff, 0 0 0 4px rgba(50, 100 ,150, .4)
+
+  &:disabled
+    color $color-gray-light!important
+    background $color-gray!important
+    cursor not-allowed
+
+  &.small
+    padding 12px 16px!important
+    font-size .9rem
+    &:focus
+      box-shadow none
+
+  &.mini
+    padding 4px 6px!important
+    font-size 75%
+    border-radius 3px
+
+  &.full-width
+    width 100%
+
+  &.icon
+    padding 16px!important
+    &.small
+      padding 8px!important
+    &.mini
+      padding 4px!important
+      font-size 75%!important
+
+  &.transparent
+    background transparent
+    color $color-black
+    &:hover
+      background $color-gray-yellow
+
+  &.white
+    background $color-white
+    color $color-black
+    &:hover
+      background $color-gray-light
+
+  &.yellow
+    background $color-yellow
+    color $color-black
+    &:hover
+      background darken($color-yellow, 20%)
+
+  &.gray
+    background $color-black-light
+    color $color-white
+    &:hover
+      background lighten($color-black-light, 20%)
+
+  &.danger
+    background $color-red
+    color $color-white
+    &:hover
+      background lighten($color-red, 20%)
+
+  &.facebook
+    background #374EA3
+    &:hover
+      background darken(#374EA3, 20%)
+
+  &.twitter
+    background #27A9F7
+    &:hover
+      background darken(#27A9F7, 20%)
+
+  &.line
+    background #00CE00
+    &:hover
+      background darken(#00CE00, 20%)
+
+  &.googleplus
+    background #F02D26
+    &:hover
+      background darken(#F02D26, 20%)
+
+  &.tumblr
+    background #264E70
+    &:hover
+      background darken(#264E70, 20%)
+
+  &.link
+    background none
+    color $color-black
+
+  &.rounded
+    border-radius 8888px
+
+  &.outlined
+    border 2px solid $color-black
+
+
+.button + .button
+  margin-left 16px
+
+
+.button.small + .button.small
+  margin-left 4px
+
+
+.button-group
+  .button + .button
+    margin-left 0

@@ -1,0 +1,40 @@
+---
+permalink: /template/generators/official/kangxi-generator.html
+---
+
+<div class="template-wrapper generator-template-wrapper generator-kangxi-generator">
+  <div id="generator_container">
+    <div id="generator_preview" ref="generator_preview">
+      <div class="preview-area shadow">
+        <div class="preview-area-wrapper">
+          <div class="loading" v-bind:class="{ 'on': loading_preview }">
+            <spinner></spinner>
+          </div>
+          <img :src="preview_image" />
+        </div>
+      </div>
+      <div id="output_container">
+        <div class="text" ref="text" v-html="nl2br(text)" :style="{ fontSize: px(text_size), padding: px(text_size * 0.75), backgroundColor: background_color, color: text_color, lineHeight: px(text_size * 1.25) }"></div>
+      </div>
+    </div>
+    <div id="generator_form">
+      <div class="form-input">
+        <div class="form-group">
+          <h3 v-text="$t('title.content_text')"></h3>
+          <textarea ref="text_input" v-model="text_input" v-on:keydown="update_countdown"></textarea>
+        </div>
+        <div class="fields-column-2">
+          <div class="form-group column">
+            <h3 v-text="$t('label.text_color')"></h3>
+            <color-picker-input :color="text_color" @update="value => text_color = value"></color-picker-input>
+          </div>
+          <div class="form-group column">
+            <h3 v-text="$t('label.background_color')"></h3>
+            <color-picker-input :color="background_color" :float_right="true" @update="value => background_color = value"></color-picker-input>
+          </div>
+        </div>
+      </div>
+      <generator-action-buttons v-on:action="value => generator(value)"></generator-action-buttons>
+    </div>
+  </div>
+</div>

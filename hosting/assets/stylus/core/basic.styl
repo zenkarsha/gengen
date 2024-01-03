@@ -1,0 +1,186 @@
+html, body
+  __font('hei')
+  +above($tablet)
+    font-size 100%
+
+
+html
+  height auto
+  min-height 100%
+  background $color-gray-yellow
+
+
+body
+  width 100%
+  height auto
+  min-height 100%
+  min-width 320px
+  overflow-x hidden
+  background $color-white
+
+  *
+    outline none
+
+  &.lock-scroll
+    height 100vh
+    max-height 100vh
+    overflow hidden
+    #app
+      height 100vh
+      max-height 100vh
+      overflow hidden
+
+
+h1, h2, h3, h4, h5, h6
+  font-weight normal
+
+
+a
+  text-decoration none
+  color $color-black
+
+  &:hover
+  &:active
+    color lighten($color-black, 20%)
+
+
+*, *:before, *:after
+  box-sizing: border-box
+
+
+p
+  word-break break-word
+  line-height 1.5rem
+
+
+ul
+  padding 0
+  list-style-type none
+
+
+hr
+  margin 16px 0
+  border none
+  border-bottom 1px solid $color-gray-light
+
+  &.large
+    margin 32px 0
+
+  &.no-margin-top
+    margin-top 0
+
+
+input[type=text]
+input[type=email]
+textarea
+  position relative
+  width 100%
+  padding 10px
+  font-size 1.2rem
+  outline none
+  box-sizing border-box
+  transition border $t-sec
+  border 0
+  border-radius $s-radius
+  background $color-white
+  border 2px solid $color-gray
+  -webkit-appearance none
+
+  &:focus
+    border-color darken($color-black, 10%)
+
+  &.half-size
+    width 50%
+
+  &.is-danger
+    border-color $color-red
+
+  & + input[type=text]
+  & + input[type=email]
+  & + textarea
+    margin-top 16px
+
+
+input[type=radio]
+  appearance none
+  width 20px
+  height 20px
+  margin 0
+  vertical-align text-top
+  background $color-white
+  border 2px solid $color-black
+  border-radius 50%
+
+  &:checked
+    background radial-gradient(circle, $color-black 45%, $color-white 50%)
+
+
+input[type=checkbox]
+  appearance none
+  width 20px
+  height 20px
+  margin 0
+  vertical-align text-top
+  background $color-white
+  border 2px solid $color-black
+  border-radius $s-radius
+
+  &:checked
+    background url('/images/icon/checked.svg') center no-repeat
+    background-size cover
+
+
+label
+  font-size 1rem
+
+  &.checkbox-label
+    margin-right 16px
+
+  +below($tablet)
+    font-size .9rem
+
+
+textarea
+  height 100px
+  resize none
+  &.small
+    height 60px
+
+
+select
+  position relative
+  border none
+  background transparent
+  appearance none
+  padding 10px
+  font-size 1.2rem
+  width 100%
+  background-color $color-white
+  border 2px solid $color-gray
+  border-radius $s-radius
+  background-image url('data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTguMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDQ5My4yNTggNDkzLjI1OCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNDkzLjI1OCA0OTMuMjU4OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjE2cHgiIGhlaWdodD0iMTZweCI+CjxnIGlkPSJYTUxJRF82MjFfIj4KCTxwYXRoIGlkPSJYTUxJRF82MjNfIiBkPSJNMTMxLjU2NCwyMTkuMjU4aDIzMC4xM2M5LjMxNCwwLDE3Ljg1Ny01LjE2LDIyLjIwMy0xMy4zODljNC4zNC04LjI0NiwzLjc2OS0xOC4xOTMtMS40OTQtMjUuODk1ICAgTDI2NS45Miw5Ljc3MkMyNjEuNzUsMy42OCwyNTQuODQ2LDAuMDMzLDI0Ny40NjEsMGMtNy4zNzctMC4wMTgtMTQuMzAzLDMuNTg0LTE4LjUwNyw5LjY1OEwxMTAuOTM1LDE3OS44NjMgICBjLTUuMzE5LDcuNjY4LTUuOTM4LDE3LjY2NC0xLjYwNywyNS45NDFDMTEzLjY1OSwyMTQuMDY3LDEyMi4yMjUsMjE5LjI1OCwxMzEuNTY0LDIxOS4yNTh6IiBmaWxsPSIjMDAwMDAwIi8+Cgk8cGF0aCBpZD0iWE1MSURfNjIyXyIgZD0iTTM2MS42OTQsMjczLjk5OGgtMjMwLjEzYy05LjMzOSwwLTE3LjkwNSw1LjE5My0yMi4yMzYsMTMuNDU1Yy00LjMzMSw4LjI3Ny0zLjcxMSwxOC4yNzMsMS42MDcsMjUuOTM5ICAgbDExOC4wMTksMTcwLjIwNWM0LjIwNCw2LjA3NCwxMS4xMyw5LjY3NiwxOC41MDcsOS42NmM3LjM4NS0wLjAzMSwxNC4yODktMy42ODIsMTguNDU5LTkuNzcybDExNi40ODMtMTcwLjIwNSAgIGM1LjI2My03LjY5OSw1LjgzNC0xNy42NDgsMS40OTQtMjUuODk1QzM3OS41NTEsMjc5LjE1OCwzNzEuMDA4LDI3My45OTgsMzYxLjY5NCwyNzMuOTk4eiIgZmlsbD0iIzAwMDAwMCIvPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=')
+  background-position right 8px center
+  background-repeat no-repeat
+
+  &:focus
+    border 2px solid $color-black
+
+
+mark
+  background $color-yellow
+
+
+button::-moz-focus-inner
+  border 0
+
+
+button:focus
+  outline none
+
+
+*::-moz-selection
+  background: $color-yellow
+
+
+*::selection
+  background: $color-yellow

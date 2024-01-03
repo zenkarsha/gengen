@@ -1,0 +1,37 @@
+<div v-if="form_config.template == 'subtitle'">
+  <div class="form-group">
+    <h3 ref="basemap_images_label" v-text="$t('label.upload_basemap_image')"></h3>
+    <div class="fileupload-button">
+      <input type="file" v-on:change="local_preview($event, 'form_config.basemap_images', 'basemap_images', true)" accept="image/*" ref="basemap_images" multiple>
+      <button type="button" class="button" v-on:click="$refs.basemap_images.click()">
+        <i class="flaticon-upload padding-right"></i>
+        ${$t('button.choose_image')}
+      </button>
+    </div>
+    <div class="local-preview multiple large">
+      <div v-for="(image, index) in form_config.basemap_images">
+        <div class="image">
+          <img :src="image">
+        </div>
+        <div class="tool-buttons">
+          <cropper :image="image" :viewport_w="320" :viewport_h="240" :output_w="640" :output_h="480" :ratio_changer="true" :default_ratio="'4 : 3'" :class_name="'button'" v-on:update="value => form_config.basemap_images.splice(index, 1, value)"></cropper>
+          <button type="button" class="button" v-on:click="array_set_first(form_config.basemap_images, image)" v-if="index != 0">
+            <i class="make-default"></i>
+          </button>
+          <button type="button" class="button" v-on:click="form_config.basemap_images.splice(index, 1)" v-if="form_config.basemap_images.length > 1">
+            <i class="flaticon-garbage"></i>
+          </button>
+        </div>
+      </div>
+      <div class="add-more" v-on:click="$refs.basemap_images.click()">
+        <div class="image">
+          <img src="/images/upload-placeholder.jpg" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <h3 ref="default_text_label" v-text="$t('label.default_text')"></h3>
+    <textarea v-model="form_config.default_text" name="default_text" ref="default_text"></textarea>
+  </div>
+</div>

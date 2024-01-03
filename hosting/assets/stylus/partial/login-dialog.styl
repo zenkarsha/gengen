@@ -1,0 +1,56 @@
+.login-page
+  display flex
+  justify-content center
+  align-items center
+
+
+.login-dialog
+  width 400px
+  text-align center
+  margin-top 32px
+  opacity 0
+  transform scale(.8)
+  animation baker-appear .3s ease-in-out 1
+  animation-delay 1s
+  animation-fill-mode forwards
+
+  h2
+    font-weight bold
+    margin 32px 0
+
+  .logo
+    width 304px
+    height 90px
+    background-position center
+    margin auto
+    +below($tablet)
+      width 200px
+      height 70px
+
+  .openid-logins
+    __block-shadow()
+    display flex
+    flex-wrap wrap
+    background $color-white
+    border-radius $m-radius
+    padding 48px
+    .button
+      margin 0
+      width 100%
+      margin-bottom 16px
+      &:last-child
+        margin-bottom 0
+
+  .links
+    margin 32px 0
+    font-size 90%
+    a
+      &:last-child:before
+        content "•"
+        margin 0 8px
+
+  +below($tablet)
+    margin-top 0
+    .openid-logins
+      box-shadow none
+      padding 0

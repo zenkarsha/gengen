@@ -1,0 +1,31 @@
+---
+permalink: /template/generators/dialog.html
+---
+
+<div class="template-wrapper generator-template-wrapper generator-dialog">
+  <div id="generator_container">
+    <div id="generator_preview" ref="generator_preview">
+      <div class="preview-area shadow">
+        <div class="preview-area-wrapper">
+          <div class="loading" v-bind:class="{ 'on': loading_preview }">
+            <spinner></spinner>
+          </div>
+          <img :src="preview_image" />
+        </div>
+      </div>
+      <div id="output_container">
+        <img ref="basemap_image" :src="basemap_image" />
+        <div v-for="(item, index) in text_config" ref="item.key" :class="['dialog-text']" v-html="nl2br(html_encode(item.text))" :style="{ left: px((canvas_w - item.width) * .5 + item.left_offset ), top: px((canvas_h - (item.font_size * item.max_lines)) * .5 + item.top_offset ), fontSize: px(item.font_size), lineHeight: px(item.font_size), color: item.color, textAlign: item.text_align, width: px(item.width), height: px(item.font_size * item.max_lines) }"></div>
+      </div>
+    </div>
+    <div id="generator_form">
+      <div class="form-input">
+        <div class="form-group" v-for="(item, index) in text_config">
+          <h3 v-text="item.label_text"></h3>
+          <textarea ref="item.key + '_input'" v-model="text_config[index].text" v-on:focus="$event.target.select()" v-on:keydown="update_countdown"></textarea>
+        </div>
+      </div>
+      <generator-action-buttons v-on:action="value => generator(value)"></generator-action-buttons>
+    </div>
+  </div>
+</div>

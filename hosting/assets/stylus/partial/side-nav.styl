@@ -1,0 +1,28 @@
+.side-nav
+  +below($tablet)
+    background $color-gray-yellow
+    border-radius $m-radius
+    a
+      margin 16px 0
+
+  > *
+    display block
+    margin 24px 0!important
+    &:first-child
+      margin-top 0
+    &:last-child
+      margin-bottom 0
+    &:hover
+    &.router-link-active
+      span:after
+        width: 100%
+    span
+      display inline-block
+      &:after
+        content ''
+        display block
+        margin: 0 auto
+        height 1px
+        width 0%
+        background $color-black
+        transition width $t-sec

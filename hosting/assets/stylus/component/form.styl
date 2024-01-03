@@ -1,0 +1,92 @@
+.form-group
+  margin-bottom 12px
+
+  &.flex
+    display flex
+    justify-content space-between
+
+  h3
+    font-weight 700
+    margin 24px 0 8px
+
+  .field-message
+    display block
+    margin 0 0 8px
+    color lighten($color-black, 20%)
+    font-size 90%
+
+  .vertical-labels label
+    display block
+    margin-bottom 8px
+    cursor pointer
+    &:last-child
+      margin-bottom 0
+
+
+.form-wrapper
+  max-width 960px
+  margin auto
+
+  .form-field
+  .template-form-fields
+    max-width 860px
+    margin auto
+
+
+.input-with-button
+  display flex
+  justify-content stretch
+  align-items center
+
+  input[type="text"]
+    width auto
+    border-right 0
+
+  .button
+    margin 0
+    padding 0 16px!important
+    height 46px
+    border-top-left-radius 0
+    border-bottom-left-radius 0
+    border 2px solid $color-black
+    border-left 0
+    &:focus
+      box-shadow none
+
+
+.fileupload-button
+  position relative
+  display inline-block
+  margin-right 4px
+
+  input[type=file]
+    position absolute
+    top 0
+    left 0
+    opacity 0
+    width 0
+    height 0
+
+.multiple-langs-field
+  margin-left 32px
+  position relative
+
+  &:before
+    content ''
+    position absolute
+    top -24px
+    left -17px
+    width 2px
+    height 100%
+    background $color-gray
+
+  .form-group
+    position relative
+    &:before
+      content ''
+      position absolute
+      width 12px
+      height 2px
+      background $color-gray
+      left -16px
+      bottom 24px

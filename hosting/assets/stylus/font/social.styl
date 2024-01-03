@@ -1,0 +1,43 @@
+@font-face
+  font-family "Flaticon-social"
+  src url("/fonts/social/Flaticon.eot")
+  src url("/fonts/social/Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("/fonts/social/Flaticon.woff") format("woff"),
+       url("/fonts/social/Flaticon.ttf") format("truetype"),
+       url("/fonts/social/Flaticon.svg#flaticon") format("svg")
+  font-weight normal
+  font-style normal
+
+@media screen and (-webkit-min-device-pixel-ratio:0)
+  @font-face
+    font-family "Flaticon-social"
+    src url("/fonts/social/Flaticon.svg#flaticon") format("svg")
+
+[class^="social-icon-"]
+[class*=" social-icon-"]
+[class^="social-icon-"]
+[class*=" social-"]
+  &.padding-left
+    padding-left 8px
+  &.padding-right
+    padding-right 8px
+  .button.mini &
+    &.padding-left
+      padding-left 4px
+    &.padding-right
+      padding-right 4px
+
+[class^="social-icon-"]:before
+[class*=" social-icon-"]:before
+[class^="social-icon-"]:after
+[class*=" social-icon-"]:after
+  font-family Flaticon-social
+  font-style normal
+
+.social-icon-tumblr:before { content: "\f100"; }
+.social-icon-facebook:before { content: "\f101"; }
+.social-icon-googleplus:before { content: "\f102"; }
+.social-icon-twitter:before { content: "\f103"; }
+.social-icon-line-logo:before { content: "\f104"; }
+.social-icon-mail-black-envelope-symbol:before { content: "\f105"; }
+.social-icon-github:before { content: "\f106"; }

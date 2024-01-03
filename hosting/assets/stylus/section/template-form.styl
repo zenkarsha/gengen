@@ -1,0 +1,531 @@
+.section.template-form
+  position relative
+  padding 0
+  width 100%
+  max-width 680px
+  margin 32px auto
+
+  +below($tablet)
+    margin-bottom 64px
+
+  .number-labels
+    position absolute
+    top 0
+    left 0
+    width 100%
+    height 100%
+    .number
+      position absolute
+      display flex
+      justify-content center
+      align-items center
+      cursor pointer
+      z-index 200
+      +below($desktop)
+        i
+          width 30px
+          height 30px
+          line-height 28px
+          font-size 1.2rem
+        span
+          font-size 1.1rem
+      +below($tablet)
+        i
+          width 25px
+          height 25px
+          line-height 23px
+          font-size 1rem
+        span
+          font-size .9rem
+      > i
+        display block
+        width 40px
+        height 40px
+        line-height 37px
+        text-align center
+        border 2px solid $color-black
+        border-radius 50%
+        background $color-white
+        font-size 1.5rem
+        font-style normal
+        transition background $t-sec
+      span
+        margin 0 8px
+        font-size 1.25rem
+        +below($tablet)
+          background $color-white
+          padding 0px 4px
+          border-radius $m-radius
+        &:after
+          content ''
+          display block
+          margin: 0 auto
+          height 1px
+          width 0%
+          background $color-black
+          transition width $t-sec
+        &:hover:after,
+        &.router-link-active:after
+          width: 100%
+      &:hover i
+        background $color-yellow
+
+  &.sticker
+    .number-labels
+      width 100%
+      .example-image
+        top 64px
+        right 64px
+        flex-direction row-reverse
+        +below($tablet)
+          top 16px
+          right 16px
+      .sticker-images
+        bottom calc(15% + 16px)
+        left calc(10% - 8px)
+        +below($tablet)
+          bottom calc(5% + 16px)
+          left calc(8%)
+    .example-image-field
+      width 100%
+      height 0
+      padding-top 60%
+      border 3px solid $color-black
+      border-radius $l-radius
+      margin auto
+      position relative
+      overflow hidden
+      background-image url(/images/sticker-example-image.png)
+      background-size cover
+      &:before
+        content ''
+        display block
+        width 100%
+        height 0
+        padding-top 80%
+        background-color $color-gray-yellow
+        border-radius $l-radius
+        position absolute
+        top 0
+        left 0
+        z-index -10
+    .sticker-images-field
+      position absolute
+      width 30%
+      height 0
+      padding-top 30%
+      border 2px dashed $color-black
+      top 20%
+      left 10%
+      background-image url(/images/g-yellow.png)
+      background-repeat no-repeat
+      background-size contain
+      background-color transparentify(lighten($color-yellow, 50%))
+      transition background $t-sec
+      cursor pointer
+      &:hover
+        background-color lighten($color-yellow, 50%)
+      &:before
+        content ''
+        display block
+        width 100%
+        height 0
+        padding-top 100%
+        border 2px dashed $color-gray
+        position absolute
+        top -15%
+        right -15%
+        z-index -2
+        background-image url(/images/g-gray.png)
+        background-repeat no-repeat
+        background-size contain
+      .handler-nw
+      .handler-sw
+      .handler-ne
+      .handler-se
+        display block
+        width 5%
+        height 0
+        padding-top 5%
+        position absolute
+        background $color-yellow
+        border 2px solid $color-black
+        box-sizing content-box
+        &:before
+          content ''
+          display block
+          width 0
+          height 400%
+          border 1px dashed $color-gray
+          position absolute
+          bottom 0
+          left calc(200% - 3px)
+          transform rotate(45deg)
+          z-index -1
+      .handler-nw
+        top calc(-2.5% - 2px)
+        left calc(-2.5% - 2px)
+      .handler-sw
+        bottom calc(-2.5% - 2px)
+        left calc(-2.5% - 2px)
+      .handler-ne
+        top calc(-2.5% - 2px)
+        right calc(-2.5% - 2px)
+      .handler-se
+        bottom calc(-2.5% - 2px)
+        right calc(-2.5% - 2px)
+
+  &.avatar
+    .number-labels
+      width 60%
+      position absolute
+      top 0
+      left 20%
+      .frame-images
+        bottom -16px
+        left -16px
+        +below($tablet)
+          bottom -12px
+          left -12px
+      .example-image
+        top -4px
+        right 6px
+        flex-direction row-reverse
+        +below($tablet)
+          top -8px
+          right -2px
+    .frame-images-field
+      width 60%
+      height 0
+      padding-top 60%
+      border 2px dashed $color-gray
+      border-radius $l-radius
+      margin auto
+      margin-bottom 10%
+      position relative
+      background-image url(/images/avatar-placeholder.jpg)
+      background-size contain
+      cursor pointer
+      transition background $t-sec
+
+      &:before
+        content ''
+        display block
+        width 100%
+        height 0
+        padding-top 100%
+        border 3px solid $color-black
+        border-radius $l-radius
+        position absolute
+        top 10%
+        right 12%
+        z-index 2
+        background-image url(/images/avatar-frame-images.png)
+        background-repeat no-repeat
+        background-size cover
+        background-color rgba(255, 255, 255, .25)
+      &:after
+        content ''
+        width 112%
+        height 0
+        padding-top 110%
+        position absolute
+        bottom -10%
+        left -12%
+        background-image url(/images/avatar-arrow.png), url(/images/avatar-arrow.png), url(/images/avatar-arrow.png)
+        background-position top -1px right 4px, top -1px left 4px, bottom 8px right 0
+        background-repeat no-repeat
+        background-size 10%
+      +below($tablet)
+        &:after
+          background-position top -4px right, top -4px left 4px, bottom 4px right
+          // background-size 8%
+
+  &.subtitle
+    .number-labels
+      width 100%
+      height 0
+      padding-top 60%
+      position absolute
+      top 0
+      left 0
+      .basemap-images
+        top 32px
+        left 32px
+        +below($tablet)
+          top 16px
+          left 16px
+      .default-text
+        bottom calc(10% + 72px)
+        left calc(20% + 8px)
+    .basemap-images-field
+      width 100%
+      height 0
+      padding-top 60%
+      border 3px solid $color-black
+      border-radius $l-radius
+      margin auto
+      position relative
+      overflow hidden
+      background-image url(/images/subtitle-basemap-image.png)
+      background-size contain
+      background-color $color-gray-yellow
+      background-position center
+      background-repeat no-repeat
+    .default-text-field
+      width 60%
+      padding 24px
+      position absolute
+      bottom 10%
+      left 20%
+      z-index 100
+      border 1px dashed $color-gray
+      text-align center
+      font-size 2rem
+      cursor pointer
+      +below($tablet)
+        padding 8px 16px
+        font-size 1.2rem
+
+  &.quote
+    .number-labels
+      width 100%
+      height 0
+      padding-top 45%
+      position absolute
+      top 0
+      left 0
+      .role-images
+        top 16px
+        left 16px
+        +below($tablet)
+          top unset
+          bottom 4px
+          left 8px
+      .default-text
+        top 3%
+        right 3%
+        flex-direction row-reverse
+      .role-name
+        bottom 15%
+        right 3%
+        flex-direction row-reverse
+    .quote-background
+      width 100%
+      height 0
+      padding-top 45%
+      border 3px solid $color-black
+      border-radius $l-radius
+      background $color-gray-yellow
+      overflow hidden
+    .role-images-field
+      width 30%
+      height 0
+      padding-top 45%
+      border-radius $m-radius
+      border-top-right-radius 0
+      border-bottom-right-radius 0
+      position absolute
+      top 3px
+      left 3px
+      background-image url(/images/subtitle-basemap-image.png)
+      background-size contain
+      background-color $color-gray
+      background-position center
+      background-repeat no-repeat
+    .default-text-field
+      width 60%
+      padding 24px
+      position absolute
+      top 15%
+      left 35%
+      z-index 100
+      border 1px dashed $color-gray
+      text-align left
+      font-size 2rem
+      cursor pointer
+      +below($desktop)
+        padding 8px
+        font-size 1.8rem
+      +below($tablet)
+        padding 8px 16px
+        font-size 1rem
+        overflow hidden
+    .role-name-field
+      width 30%
+      padding 16px
+      position absolute
+      bottom 5%
+      right 5%
+      z-index 100
+      border 1px dashed $color-gray
+      text-align right
+      font-size 1.5rem
+      cursor pointer
+      +below($desktop)
+        padding 8px
+        font-size 1.3rem
+      +below($tablet)
+        width 40%
+        padding 4px 8px
+        font-size .9rem
+
+  &.cover
+    .number-labels
+      width 80%
+      position absolute
+      top 0
+      left 10%
+      .frame-images
+        bottom -8px
+        left 32px
+        +below($tablet)
+          bottom -8px
+      .example-image
+        top -16px
+        right -16px
+        flex-direction row-reverse
+        +below($tablet)
+          right -8px
+          top -8px
+    .frame-images-field
+      width 80%
+      height 0
+      padding-top 30%
+      border 2px dashed $color-gray
+      border-radius $l-radius
+      margin auto
+      margin-top 10%
+      margin-bottom 10%
+      position relative
+      background-image url(/images/avatar-placeholder.jpg)
+      background-size contain
+      background-repeat no-repeat
+      background-position center
+      cursor pointer
+      background-color $color-gray-yellow
+      transition background $t-sec
+      cursor pointer
+      &:before
+        content ''
+        display block
+        width 100%
+        height 0
+        padding-top 38%
+        border 3px solid $color-black
+        position absolute
+        top 10%
+        right 12%
+        z-index 2
+        background-image url(/images/avatar-frame-images.png)
+        background-repeat no-repeat
+        background-size contain
+        background-color rgba(255, 255, 255, .25)
+        border-radius $l-radius
+      &:after
+        content ''
+        width 112%
+        height 0
+        padding-top 25%
+        position absolute
+        bottom 0
+        left -12%
+        background-image url(/images/avatar-arrow.png), url(/images/avatar-arrow.png)
+        background-position top -1px right 4px, top -1px left 4px
+        background-repeat no-repeat
+        background-size 10%
+      +below($tablet)
+        &:after
+          background-position top -4px right, top -4px left 4px, bottom 4px right
+
+  &.meme
+    .number-labels
+      width 60%
+      height 0
+      padding-top 60%
+      position absolute
+      top 0
+      left 20%
+      color $color-gray
+      +below($tablet)
+        width 100%
+        padding-top 100%
+        left 0
+        color $color-black
+      span > i
+        color $color-black
+      .meme-images
+        bottom 25%
+        left 5%
+        color $color-black
+        +below($tablet)
+          bottom 20%
+          left 5%
+      .default-top-text
+        top 5px
+        left 5%
+      .default-bottom-text
+        bottom 0
+        left 5%
+    .meme-images-field
+      width 60%
+      height 0
+      padding-top 60%
+      border 3px solid $color-black
+      border-radius $l-radius
+      margin auto
+      position relative
+      overflow hidden
+      background-color #000
+      position relative
+      +below($tablet)
+        width 100%
+        padding-top 100%
+      .example-meme-image
+        width 80%
+        height 50%
+        position absolute
+        top 25%
+        left 10%
+        border 3px solid $color-gray
+        background-color $color-yellow
+        background-image url(/images/meme-meme-image.png)
+        background-size contain
+        background-position center
+        background-repeat no-repeat
+    .default-top-text-field
+      width calc(50% - 16px)
+      padding 12px 24px
+      position absolute
+      top 5%
+      left calc(25% + 8px)
+      z-index 100
+      border 1px dashed $color-gray
+      text-align center
+      font-size 2rem
+      cursor pointer
+      color $color-white
+      +below($tablet)
+        padding 8px 16px
+        font-size 1.2rem
+        width 80%
+        left 10%
+        padding 16px 24px
+    .default-bottom-text-field
+      width calc(50% - 16px)
+      padding 12px 24px
+      position absolute
+      bottom 5%
+      left calc(25% + 8px)
+      z-index 100
+      border 1px dashed $color-gray
+      text-align center
+      font-size 2rem
+      cursor pointer
+      color $color-white
+      +below($tablet)
+        padding 8px 16px
+        font-size 1.2rem
+        width 80%
+        left 10%
+        padding 16px 24px

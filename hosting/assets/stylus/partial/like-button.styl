@@ -1,0 +1,12 @@
+.like-button
+  cursor pointer!important
+  border-radius 8888px
+  padding 4px 8px
+  transition background $t-sec
+
+  &:hover
+    background lighten($color-gray, 60%)
+
+  &.liked
+    color $color-red!important
+    font-weight bold!important

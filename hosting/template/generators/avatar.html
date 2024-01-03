@@ -1,0 +1,64 @@
+---
+permalink: /template/generators/avatar.html
+---
+
+<div class="template-wrapper generator-template-wrapper generator-avatar">
+  <drag-upload-zone @callback="value => load_preview(value, 'basemap_image', false)"></drag-upload-zone>
+  <div id="generator_container" ref="generator_container" v-bind:style="[is_desktop && container_w != 0 && container_h != 0 ? { width: px(container_w), height: px(container_h), maxHeight: 'unset' } : '']">
+    <div id="generator_preview">
+      <div class="preview-area">
+        <div class="draggable-container" ref="draggable_container" :style="{ width: px(preview_w) , height: px(preview_h) }">
+          <draggable-element class="draggable-wrapper hide-image" :w="basemap_w" :h="basemap_h" :x="basemap_x" :y="basemap_y" :containment="'.draggable-zone'" @dragged="handle_dragged" :style="{ width: px(basemap_w) , height: px(basemap_h), top: px(basemap_y), left: px(basemap_x) }">
+            <img id="basemap_image" :src="q_auto(basemap_image)" />
+          </draggable-element>
+          <draggable-zone class="draggable-zone" :container_w="preview_w" :container_h="preview_h" :object_w="basemap_w" :object_h="basemap_h" :type="'avatar'"></draggable-zone>
+          <transition name="fade">
+            <div class="loading" v-bind:class="{ 'on': loading_preview }" v-show="loading_preview">
+              <spinner></spinner>
+            </div>
+          </transition>
+        </div>
+        <div id="frame_image_wrapper" :style="[is_not_desktop && preview_w != 0 && preview_h != 0 ? { width: px(preview_w), height: px(preview_h) } : '']">
+          <div id="frame_container" ref="frame_container">
+            <img id="frame_image" ref="frame_image" :src="q_gen_avatar(frame_image)"  :style="{ backgroundImage: 'url(' + q_auto(basemap_image) + ')', backgroundSize: basemap_w + 'px ' + px(basemap_h), backgroundPosition: basemap_x + 'px ' + px(basemap_y) }" />
+          </div>
+        </div>
+      </div>
+      <div class="tool-buttons">
+        <zoom-slider ref="zoom_slider" :min="100" :max="250" :step="5" :default="120" :live_change="true" :enable_scroll="true" :scroll_area="'draggable_container'" @changed="handle_zoom" v-once v-if="!is_mobile"></zoom-slider>
+        <zoom-slider ref="zoom_slider" :min="100" :max="250" :step="5" :default="120" :live_change="true" @changed="handle_zoom" v-once v-if="is_mobile"></zoom-slider>
+        <div class="button-group">
+          <vintage-filter :image="basemap_image" :class_name="'button gray rounded icon'" :button_text="''" v-on:update="value => basemap_image = value" v-on:toggle_dont_move="value => dont_move = value" v-if="basemap_image != ''"></vintage-filter>
+        </div>
+      </div>
+    </div>
+    <div id="generator_form">
+      <div class="form-input">
+        <div class="form-group">
+          <h3 v-text="$t('title.upload_image')"></h3>
+          <div class="fileupload-button">
+            <input ref="basemap_image" type="file" v-on:change="handle_basemap_change" accept="image/*">
+            <button type="button" class="button rounded" v-on:click="$refs.basemap_image.click()">
+              <i class="flaticon-upload padding-right"></i>
+              ${$t('button.choose_image')}
+            </button>
+          </div>
+          <button type="button" class="button rounded" v-on:click="load_user_avatar" v-if="user && user.isAnonymous == false">
+            <i class="flaticon-user padding-right"></i>
+            ${$t('button.load_my_avatar')}
+          </button>
+        </div>
+        <div class="form-group">
+          <h3 v-text="$t('title.choose_frame')"></h3>
+          <div id="frame_list_container" class="image-select-list">
+            <label v-for="item in config.frame_images" :style="{ backgroundImage: 'url(' + basemap_image + ')', backgroundSize: px(basemap_w * label_ratio) + ' ' + px(basemap_h * label_ratio), backgroundPosition: px(basemap_x * label_ratio) + ' ' + px(basemap_y * label_ratio) }" :class="{ 'active' : q_gen_avatar(item) == frame_image_select }">
+              <div class="image-item" :style="{ backgroundImage: 'url(' + q_gen_avatar(item) + ')' }"></div>
+              <input type="radio" v-model="frame_image_select" :value="q_gen_avatar(item)">
+            </label>
+          </div>
+        </div>
+      </div>
+      <generator-action-buttons :preview_mode="config.preview_mode ? true : false" v-on:action="value => generator(value)"></generator-action-buttons>
+    </div>
+  </div>
+</div>

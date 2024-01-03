@@ -1,0 +1,72 @@
+---
+permalink: /template/generators/official/kangxi-poem.html
+---
+
+<div class="template-wrapper generator-template-wrapper generator-kangxi-poem">
+  <div id="generator_container">
+    <div class="loading" v-bind:class="{ 'on': loading_preview }">
+      <spinner></spinner>
+    </div>
+    <div id="generator_preview" ref="generator_preview">
+      <div class="preview-area shadow">
+        <div class="preview-area-wrapper">
+          <img :src="preview_image" />
+        </div>
+      </div>
+      <div id="output_container">
+        <div class="text" ref="text" v-html="nl2br(poem)" :style="{ fontSize: px(text_size), padding: px(text_size), backgroundColor: background_color, color: text_color, lineHeight: px(text_size * 1.5), fontFamily: font }"></div>
+      </div>
+    </div>
+    <div id="generator_form">
+      <div class="form-input">
+        <div class="form-group">
+          <h3 v-text="$t('title.content_text')"></h3>
+          <span class="field-message">${$t('message.poem_text')}</span>
+          <div class="input-with-button">
+            <input type="text" name="text_input" ref="text_input" v-model="text_input" v-validate="'max:10'" :class="{'input': true, 'is-danger': errors.has('text_input') }" />
+            <button type="button" class="button" v-text="$t('button.generate_poem')" v-on:click="handle_generate_poem"></button>
+          </div>
+        </div>
+        <div class="form-group">
+          <h3 v-text="$t('text.poem_syllable')"></h3>
+          <label><input type="radio" v-model="poem_length" :value="5"> ${$t('text.wujue')}</label>&nbsp;
+          <label><input type="radio" v-model="poem_length" :value="7"> ${$t('text.qijue')}</label>
+        </div>
+        <div class="fields-column-2 small-padding">
+          <div class="form-group column">
+            <h3 v-text="$t('text.acrostic_position')"></h3>
+            <select v-model="poem_position">
+              <option v-bind:value="1">頭</option>
+              <option v-bind:value="2">二</option>
+              <option v-bind:value="3">三</option>
+              <option v-bind:value="4">四</option>
+              <option v-bind:value="5">五</option>
+              <option v-bind:value="6" v-if="poem_length == 7">六</option>
+              <option v-bind:value="7" v-if="poem_length == 7">七</option>
+              <option v-bind:value="'lr'">／</option>
+              <option v-bind:value="'rl'">＼</option>
+            </select>
+          </div>
+          <div class="form-group column">
+            <h3 v-text="$t('title.choose_font')"></h3>
+            <select v-model="font">
+              <option v-bind:value="'KangxiDict'">康熙字典體</option>
+              <option v-bind:value="'JuZhenFangSong'">聚珍仿宋</option>
+            </select>
+          </div>
+        </div>
+        <div class="fields-column-2 small-padding">
+          <div class="form-group column">
+            <h3 v-text="$t('label.text_color')"></h3>
+            <color-picker-input :color="text_color" @update="value => text_color = value"></color-picker-input>
+          </div>
+          <div class="form-group column">
+            <h3 v-text="$t('label.background_color')"></h3>
+            <color-picker-input :color="background_color" :float_right="true" @update="value => background_color = value"></color-picker-input>
+          </div>
+        </div>
+      </div>
+      <generator-action-buttons v-on:action="value => generator(value)"></generator-action-buttons>
+    </div>
+  </div>
+</div>

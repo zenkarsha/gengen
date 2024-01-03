@@ -1,0 +1,54 @@
+<div class="fields-column-2 pad-full-width" v-if="form_config.template == 'sticker'">
+  <div class="form-group column">
+    <h3 ref="sticker_images_label" v-text="$t('label.upload_sticker_image')"></h3>
+    <div class="fileupload-button">
+      <input type="file" v-on:change="local_preview($event, 'form_config.sticker_images', 'sticker_images', true)" accept="image/png" ref="sticker_images" multiple>
+      <button type="button" class="button" v-on:click="$refs.sticker_images.click()">
+        <i class="flaticon-upload padding-right"></i>
+        ${$t('button.choose_image')}
+      </button>
+    </div>
+    <div class="local-preview multiple">
+      <div v-for="(image, index) in form_config.sticker_images">
+        <div class="image">
+          <img :src="image">
+        </div>
+        <div class="tool-buttons">
+          <cropper :image="image" :enable_resize="true" :ratio_changer="true" :class_name="'button'" v-on:update="value => form_config.sticker_images.splice(index, 1, value)"></cropper>
+          <button type="button" class="button" v-on:click="array_set_first(form_config.sticker_images, image)" v-if="index != 0">
+            <i class="make-default"></i>
+          </button>
+          <button type="button" class="button" v-on:click="form_config.sticker_images.splice(index, 1)" v-if="form_config.sticker_images.length > 1">
+            <i class="flaticon-garbage"></i>
+          </button>
+        </div>
+      </div>
+      <div class="add-more" v-on:click="$refs.sticker_images.click()">
+        <div class="image">
+          <img src="/images/upload-placeholder.jpg" />
+        </div>
+      </div>
+    </div>
+    <h3 v-text="$t('label.set_sticker_position')"></h3>
+    <button type="button" class="button" v-text="$t('label.set_sticker_position')" v-on:click="show_sticker_popup = true"></button>
+    <sticker-position-popup :config="form_config" v-on:update="value => update_sticker_position(value)" v-on:cancel="show_sticker_popup = false" v-if="show_sticker_popup"></sticker-position-popup>
+  </div>
+  <div class="form-group column">
+    <h3 ref="example_image_label" v-text="$t('label.upload_example_image')"></h3>
+    <div class="fileupload-button">
+      <input type="file" v-on:change="local_preview($event, 'form_config.example_image', 'example_image', false)" accept="image/*" ref="example_image">
+      <button type="button" class="button" v-on:click="$refs.example_image.click()">
+        <i class="flaticon-upload padding-right"></i>
+        ${$t('button.choose_image')}
+      </button>
+    </div>
+    <div class="local-preview" v-if="form_config.example_image.length > 0">
+      <div class="image">
+        <img :src="form_config.example_image">
+      </div>
+      <div class="tool-buttons">
+        <cropper :image="form_config.example_image" :ratio_changer="true" :default_ratio="'3 : 2'" :class_name="'button gray icon small rounded'" v-on:update="value => form_config.example_image = value"></cropper>
+      </div>
+    </div>
+  </div>
+</div>

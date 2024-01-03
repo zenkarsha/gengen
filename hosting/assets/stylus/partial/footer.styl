@@ -1,0 +1,113 @@
+#footer
+  box-sizing border-box
+  color $color-black
+  position relative
+  padding-top 24px
+  margin 0 32px
+
+  +below($tablet)
+    padding-top 0
+    margin 0
+
+  .login &
+    display none
+
+  .footer-wrapper
+    display flex
+    justify-content space-between
+    margin 32px 0 48px
+    padding-top 16px
+    border-top 1px solid $color-gray-light
+    .home &
+    .feed &
+    .feed_home &
+    .gen &
+    .official &
+    .tag &
+    .generator_list &
+    .popular_list &
+    .most_used_list &
+      border-top none
+      padding-top 0
+    +below($desktop)
+      display block
+      margin 0
+
+  .footer-nav
+    display inherit
+    +below($desktop)
+      display flex
+      flex-flow wrap
+    .footer-list
+      margin 16px 0
+      margin-right 48px
+      &:last-child
+        margin-right 0
+      h4
+        margin 0 0 16px
+        padding 8px
+        padding-bottom 0
+        font-size .9rem
+        font-weight bold
+        text-transform uppercase
+      a
+        padding 8px
+        font-size .9rem
+        color $color-black-light
+        transition color $t-sec
+        display block
+        &:hover
+          color $color-black
+      +below($desktop)
+        margin-right 0
+        width 50%
+        h4
+          margin-bottom 8px
+          margin-top 0
+
+  .footer-logo-container
+    display flex
+    justify-content flex-start
+    margin-top 8px
+    +below($desktop)
+      justify-content flex-start
+      flex-direction column
+      .logo
+        width 72px
+        height 72px
+        margin-left 4px
+        margin-top 32px
+        margin-bottom 32px
+      .site-introduce
+        text-align left
+        margin 0 8px
+        font-size 100%
+    .site-introduce
+      font-size 80%!important
+      max-width 400px
+      margin-left 16px
+      .clipboard-button
+        cursor pointer
+        text-decoration underline
+      h3
+        font-weight bold
+        margin-bottom 0
+      p
+        margin-top 8px
+    .logo
+      width 72px
+      height 72px
+      margin-top 12px
+      margin-right 12px
+      background-size contain
+      background-image url('/images/logo/logo-gray.png')
+      position relative
+      z-index 1
+
+  .copyright
+    padding 32px 0 100px
+    text-align center
+    font-size 75%
+    +below($tablet)
+      text-align left
+      padding-bottom 64px

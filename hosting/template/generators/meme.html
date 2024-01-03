@@ -1,0 +1,53 @@
+---
+permalink: /template/generators/meme.html
+---
+
+<div class="template-wrapper generator-template-wrapper generator-meme">
+  <div id="generator_container">
+    <div id="generator_preview" ref="generator_preview">
+      <div class="preview-area shadow">
+        <div class="preview-area-wrapper">
+          <div class="loading" v-bind:class="{ 'on': loading_preview }">
+            <spinner></spinner>
+          </div>
+          <img :src="preview_image" />
+        </div>
+      </div>
+      <div id="output_container">
+        <div ref="top_text" :class="['top-text text']" v-html="nl2br(html_encode(top_text))" :style="{ fontSize: px(top_text_size) }" v-if="top_text.trim() != ''"></div>
+        <img class="meme-image" ref="meme_image" :src="meme_image" />
+        <div ref="bottom_text" :class="['bottom-text text']" v-html="nl2br(html_encode(bottom_text))" :style="{ fontSize: px(bottom_text_size) }"></div>
+      </div>
+    </div>
+    <div id="generator_form">
+      <div class="form-input">
+        <div class="form-group">
+          <h3 v-text="$t('label.top_text')"></h3>
+          <textarea class="small" ref="top_text_input" v-model="top_text_input" v-on:focus="$event.target.select()" v-on:keydown="update_countdown"></textarea>
+        </div>
+        <div class="form-group">
+          <h3 v-text="$t('title.text_size')"></h3>
+          <zoom-slider ref="top_text_size_slider" :min="20" :max="120" :step="10" :default="top_text_size" @changed="value => top_text_size = value" v-once></zoom-slider>
+        </div>
+        <div class="form-group">
+          <h3 v-text="$t('label.bottom_text')"></h3>
+          <textarea class="small" ref="bottom_text_input" v-model="bottom_text_input" v-on:focus="$event.target.select()" v-on:keydown="update_countdown"></textarea>
+        </div>
+        <div class="form-group">
+          <h3 v-text="$t('title.text_size')"></h3>
+          <zoom-slider ref="bottom_text_size_slider" :min="20" :max="120" :step="10" :default="bottom_text_size" @changed="value => bottom_text_size = value" v-once></zoom-slider>
+        </div>
+        <div class="form-group">
+          <h3 v-text="$t('title.choose_meme_image')"></h3>
+          <div id="meme_list_container" class="image-select-list">
+            <label v-for="item in config.meme_images" :class="{ 'active' : q_auto(item) == meme_image_select }">
+              <div class="image-item" :style="{ backgroundImage: 'url(' + q_label(item) + ')' }"></div>
+              <input type="radio" v-model="meme_image_select" :value="q_auto(item)">
+            </label>
+          </div>
+        </div>
+      </div>
+      <generator-action-buttons v-on:action="value => generator(value)"></generator-action-buttons>
+    </div>
+  </div>
+</div>

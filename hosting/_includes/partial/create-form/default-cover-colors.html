@@ -1,0 +1,81 @@
+<label class="wavey-fingerprint" v-if="is_not_safari && is_not_firefox && is_desktop">
+  <input type="radio" v-model="default_cover_color" :value="'wavey-fingerprint'"><span></span>
+</label>
+<label class="protruding-squares" v-if="is_not_safari && is_not_firefox && is_desktop">
+  <input type="radio" v-model="default_cover_color" :value="'protruding-squares'"><span></span>
+</label>
+<label class="wintery-sunburst" v-if="is_not_safari && is_not_firefox && is_desktop">
+  <input type="radio" v-model="default_cover_color" :value="'wintery-sunburst'"><span></span>
+</label>
+<label class="endless-constellation" v-if="is_not_safari && is_not_firefox && is_desktop">
+  <input type="radio" v-model="default_cover_color" :value="'endless-constellation'"><span></span>
+</label>
+<label class="zig-zag" v-if="is_not_safari && is_not_firefox && is_desktop">
+  <input type="radio" v-model="default_cover_color" :value="'zig-zag'"><span></span>
+</label>
+<label class="repeating-chevrons" v-if="is_not_safari && is_not_firefox && is_desktop">
+  <input type="radio" v-model="default_cover_color" :value="'repeating-chevrons'"><span></span>
+</label>
+<label class="diagonal-stripes" v-if="is_not_safari && is_not_firefox && is_desktop">
+  <input type="radio" v-model="default_cover_color" :value="'diagonal-stripes'"><span></span>
+</label>
+<label class="hollowed-boxes" v-if="is_not_safari && is_not_firefox && is_desktop">
+  <input type="radio" v-model="default_cover_color" :value="'hollowed-boxes'"><span></span>
+</label>
+<label class="randomized-pattern" v-if="is_not_safari && is_not_firefox && is_desktop">
+  <input type="radio" v-model="default_cover_color" :value="'randomized-pattern'"><span></span>
+</label>
+<label class="alternating-arrowhead" v-if="is_not_safari && is_not_firefox && is_desktop">
+  <input type="radio" v-model="default_cover_color" :value="'alternating-arrowhead'"><span></span>
+</label>
+<label class="tortoise-shell" v-if="is_not_safari && is_not_firefox && is_desktop">
+  <input type="radio" v-model="default_cover_color" :value="'tortoise-shell'"><span></span>
+</label>
+<label class="repeating-triangles" v-if="is_not_safari && is_not_firefox && is_desktop">
+  <input type="radio" v-model="default_cover_color" :value="'repeating-triangles'"><span></span>
+</label>
+<label class="polka-dots" v-if="is_not_safari && is_not_firefox && is_desktop">
+  <input type="radio" v-model="default_cover_color" :value="'polka-dots'"><span></span>
+</label>
+<label class="colorful-stingrays" v-if="is_not_safari && is_not_firefox && is_desktop">
+  <input type="radio" v-model="default_cover_color" :value="'colorful-stingrays'"><span></span>
+</label>
+<label class="bermuda-traingle" v-if="is_not_safari && is_not_firefox && is_desktop">
+  <input type="radio" v-model="default_cover_color" :value="'bermuda-traingle'"><span></span>
+</label>
+<label class="bermuda-square" v-if="is_not_safari && is_not_firefox && is_desktop">
+  <input type="radio" v-model="default_cover_color" :value="'bermuda-square'"><span></span>
+</label>
+<label class="subtle-stripes" v-if="is_not_safari && is_not_firefox && is_desktop">
+  <input type="radio" v-model="default_cover_color" :value="'subtle-stripes'"><span></span>
+</label>
+<label class="shady-water">
+  <input type="radio" v-model="default_cover_color" :value="'shady-water'"><span></span>
+</label>
+<label class="teen-notebook">
+  <input type="radio" v-model="default_cover_color" :value="'teen-notebook'"><span></span>
+</label>
+<label class="cheerful-caramel">
+  <input type="radio" v-model="default_cover_color" :value="'cheerful-caramel'"><span></span>
+</label>
+<label class="loon-crest">
+  <input type="radio" v-model="default_cover_color" :value="'loon-crest'"><span></span>
+</label>
+<label class="happy-acid">
+  <input type="radio" v-model="default_cover_color" :value="'happy-acid'"><span></span>
+</label>
+<label class="blessing">
+  <input type="radio" v-model="default_cover_color" :value="'blessing'"><span></span>
+</label>
+<label class="true-sunset">
+  <input type="radio" v-model="default_cover_color" :value="'true-sunset'"><span></span>
+</label>
+<label class="sharpeye-eagle">
+  <input type="radio" v-model="default_cover_color" :value="'sharpeye-eagle'"><span></span>
+</label>
+<label class="rainbow">
+  <input type="radio" v-model="default_cover_color" :value="'rainbow'"><span></span>
+</label>
+<label class="random" v-on:click="random_cover_color = random_gradient()">
+  <input type="radio" v-model="default_cover_color" :value="'random'"><span></span>
+</label>

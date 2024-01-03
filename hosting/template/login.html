@@ -1,0 +1,34 @@
+---
+permalink: /template/login.html
+---
+
+<div class="template-wrapper login-page">
+  <div class="login-dialog">
+    <router-link :to="{name: 'home', params: {lang: $route.params.lang}}" :title="$t('nav.home')">
+      <div :class="['logo ', $route.params.lang]"></div>
+    </router-link>
+    <h2 v-text="$t('title.login_account')"></h2>
+    <div class="openid-logins">
+      <button type="button" class="button twitter" v-on:click="handle_login('twitter')">
+        <i class="social-icon-twitter padding-right"></i>
+        ${$t('button.twitter_login')}
+      </button>
+      <button type="button" class="button facebook" v-on:click="handle_login('facebook')">
+        <i class="social-icon-facebook padding-right"></i>
+        ${$t('button.facebook_login')}
+      </button>
+      <button type="button" class="button googleplus" v-on:click="handle_login('google')">
+        <i class="social-icon-googleplus padding-right"></i>
+        ${$t('button.google_login')}
+      </button>
+      <button type="button" class="button github" v-on:click="handle_login('github')">
+        <i class="social-icon-github padding-right"></i>
+        ${$t('button.github_login')}
+      </button>
+    </div>
+    <div class="links">
+      <router-link :to="{name: 'privacy', params: {lang: $route.params.lang}}" v-text="$t('nav.privacy')"></router-link>
+      <router-link :to="{name: 'terms', params: {lang: $route.params.lang}}" v-text="$t('nav.terms')"></router-link>
+    </div>
+  </div>
+</div>

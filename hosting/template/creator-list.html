@@ -1,0 +1,18 @@
+---
+permalink: /template/creator-list.html
+---
+
+<div class="template-wrapper creator-list-page">
+  <span class="force-update">${force_update}</span>
+  <div class="container">
+    <div class="section page-header">
+      <div class="header-wrapper">
+        <h1 v-if="creator">
+          <i class="flaticon-user"></i>
+          ${creator.name + $t('text.whos_generator')}
+        </h1>
+      </div>
+    </div>
+  </div>
+  {% include partial/generator-list.html %}
+</div>

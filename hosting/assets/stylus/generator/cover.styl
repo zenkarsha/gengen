@@ -1,0 +1,49 @@
+.generator-cover
+  .draggable-container
+    margin auto
+
+  #frame_image_wrapper
+    width 100%
+    height 100%
+    display flex
+    justify-content center
+    align-items center
+
+  #frame_container
+    position relative
+    line-height 0
+    width 100%
+    height 0
+    padding-top 37%
+    img
+      position absolute
+      top 0
+      left 0
+      width 100%
+      height 100%
+      margin auto
+      background-repeat no-repeat
+      object-fit contain
+    +below($tablet)
+      height inherit
+
+  .loading
+    width 100%
+    height 100%
+    position absolute
+    display flex
+    justify-content center
+    align-items center
+    background-color rgba(255, 255, 255, .8)
+    top 0
+    left 0
+    opacity 0
+    &.on
+      opacity 1
+
+
+.image-select-list
+  label
+    background-image url(/images/pattern.png)
+    background-size 20px 20px
+    background-repeat repeat

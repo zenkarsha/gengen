@@ -1,0 +1,62 @@
+<div class="preview-generator" v-if="show_preview">
+  <div class="preview-title">
+    <div class="title">
+      <h2 v-text="$t('button.preview_generator')"></h2>
+    </div>
+  </div>
+  <div class="template-wrapper generator-page">
+    <div class="generator-page-overlay"></div>
+    <div class="generator-header container">
+      <div class="section generator-header" v-if="preview_config.title">
+        <div class="header-wrapper">
+          <div class="header-avatar" :style="{ backgroundImage: 'url(' + preview_config.cover + ')' }"></div>
+          <div class="header-info">
+            <h1 v-text="preview_config.title"></h1>
+            <div class="labels">
+              <span class="template" v-bind:class="preview_config.template" v-text="$t('template.' + preview_config.template)"></span>
+              <span class="creator"><a href="#" v-text="user.displayName ? user.displayName : $t('text.anonymous')"></a></span>
+              <span class="visit-count">
+                <i class="flaticon-eye padding-right"></i> 0
+              </span>
+              <span class="use-count">
+                <i class="flaticon-download padding-right"></i> 0
+              </span>
+            </div>
+            <div class="social-buttons">
+              <social-share :link="'https://gengen.co'"></social-share>
+              <iframe :src="'https://www.facebook.com/plugins/like.php?href=' + encodeURIComponent('https://gengen.co/') + '&width=92&layout=button_count&action=like&size=small&show_faces=false&share=false&height=21&appId=221763288547490'" width="92" height="21" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="generator-description">
+          <div class="description-wrapper">
+            <p v-text="preview_config.description"></p>
+            <tag-link :text="preview_config.tags" v-show="preview_config.tags"></tag-link>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section border-top large-padding" v-if="preview_config.event_information != ''">
+      <div class="container medium">
+        <markdown-text :text="preview_config.event_information" :enable_read_more="true"></markdown-text>
+      </div>
+    </div>
+    <div class="section generator-panel">
+      <div class="panel-wrapper">
+        <component v-bind:is="preview_generator" v-bind:config="preview_config"></component>
+      </div>
+    </div>
+  </div>
+  <div class="preview-buttons">
+    <div class="button-group">
+      <button type="button" class="button gray rounded" v-on:click="show_preview = false">
+        <i class="flaticon-left-arrow padding-right"></i>
+        ${$t('button.continue_edit')}
+      </button>
+      <button type="button" class="button danger rounded" v-on:click="handle_form_check" :disabled="form_submit == true">
+        ${$t('button.done')}
+        <i class="flaticon-tick padding-left"></i>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+.tags
+  a
+    display inline-block
+    font-size .75rem
+    color $color-black-light
+    transition all $t-sec
+    &:hover
+      color $color-black
+      border-bottom 1px solid $color-gray
+
+  a + a
+    margin-left 8px
+
+  &.large
+    a
+      padding 6px 12px 4px
+      font-size 1rem
+      margin 4px 0
+      border-radius $m-radius
+      background-color $color-white
+      &:hover
+        border none
+        background $color-black
+        color $color-white
+    a + a
+      margin-left 12px

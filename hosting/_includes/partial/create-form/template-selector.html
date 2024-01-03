@@ -1,0 +1,57 @@
+<div class="section template-selector">
+  <h3 v-text="$t('title.choose_template')"></h3>
+  <div class="templates-wrapper">
+    <div class="templates">
+      <div class="template-item">
+        <div class="template-radio">
+          <input type="radio" v-model="template" value="avatar">
+          <div class="template-image avatar"></div>
+        </div>
+        <h4 v-text="$t('template.avatar')"></h4>
+        <small>
+          <router-link :to="{ name: 'gen', params: { gid: 'rpYqpjyHttXRP3E3jvjh' }}" target="_blank" v-text="$t('text.see_example')"></router-link>
+        </small>
+      </div>
+      <div class="template-item">
+        <div class="template-radio">
+          <input type="radio" v-model="template" value="sticker">
+          <div class="template-image sticker"></div>
+        </div>
+        <h4 v-text="$t('template.sticker')"></h4>
+        <small>
+          <router-link :to="{ name: 'gen', params: { gid: 'be6i1yDkQDqmVfiNGYY7' }}" target="_blank" v-text="$t('text.see_example')"></router-link>
+        </small>
+      </div>
+      <div class="template-item">
+        <div class="template-radio">
+          <input type="radio" v-model="template" value="subtitle">
+          <div class="template-image subtitle"></div>
+        </div>
+        <h4 v-text="$t('template.subtitle')"></h4>
+        <small>
+          <router-link :to="{ name: 'gen', params: { gid: 'kX22La9hKMerPLczaKCm' }}" target="_blank" v-text="$t('text.see_example')"></router-link>
+        </small>
+      </div>
+      <div class="template-item">
+        <div class="template-radio">
+          <input type="radio" v-model="template" value="quote">
+          <div class="template-image quote"></div>
+        </div>
+        <h4 v-text="$t('template.quote')"></h4>
+        <small>
+          <router-link :to="{ name: 'gen', params: { gid: 'm1PYddrpQZ9lrN3GeKrU' }}" target="_blank" v-text="$t('text.see_example')"></router-link>
+        </small>
+      </div>
+      <div class="template-item">
+        <div class="template-radio">
+          <input type="radio" v-model="template" value="meme">
+          <div class="template-image meme"></div>
+        </div>
+        <h4 v-text="$t('template.meme')"></h4>
+        <small>
+          <router-link :to="{ name: 'gen', params: { gid: 'xpuMSVYLn0deCkDduwqW' }}" target="_blank" v-text="$t('text.see_example')"></router-link>
+        </small>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="fields-column-2 pad-full-width" v-if="form_config.template == 'cover'">
+  <div class="form-group column">
+    <h3 ref="frame_images_label" v-text="$t('label.upload_frame_image')"></h3>
+    <div class="fileupload-button">
+      <input type="file" v-on:change="local_preview($event, 'form_config.frame_images', 'frame_images', true)" accept="image/png" ref="frame_images" multiple>
+      <button type="button" class="button" v-on:click="$refs.frame_images.click()">
+        <i class="flaticon-upload padding-right"></i>
+        ${$t('button.choose_image')}
+      </button>
+    </div>
+    <div class="local-preview multiple">
+      <div v-for="(image, index) in form_config.frame_images">
+        <div class="image">
+          <img :src="image">
+        </div>
+        <div class="tool-buttons">
+          <cropper :image="image" :viewport_w="425" :viewport_h="157.5" boundary_w="445" boundary_h="197.5" :output_w="850" :output_h="315":class_name="'button'" v-on:update="value => form_config.frame_images.splice(index, 1, value)"></cropper>
+          <button type="button" class="button" v-on:click="array_set_first(form_config.frame_images ,image)" v-if="index != 0">
+            <i class="make-default"></i>
+          </button>
+          <button type="button" class="button" v-on:click="form_config.frame_images.splice(index, 1)" v-if="form_config.frame_images.length > 1">
+            <i class="flaticon-garbage"></i>
+          </button>
+        </div>
+      </div>
+      <div class="add-more" v-on:click="$refs.frame_images.click()">
+        <div class="image">
+          <img src="/images/upload-placeholder.jpg" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group column">
+    <h3 ref="example_image_label" v-text="$t('label.upload_example_image')"></h3>
+    <div class="fileupload-button">
+      <input type="file" v-on:change="local_preview($event, 'form_config.example_image', 'example_image', false)" accept="image/*" ref="example_image">
+      <button type="button" class="button" v-on:click="$refs.example_image.click()">
+        <i class="flaticon-upload padding-right"></i>
+        ${$t('button.choose_image')}
+      </button>
+    </div>
+    <div class="local-preview">
+      <div class="image">
+        <img :src="form_config.example_image">
+      </div>
+      <div class="tool-buttons">
+        <cropper :image="form_config.example_image" :viewport_w="425" :viewport_h="157.5" boundary_w="445" boundary_h="197.5" :output_w="850" :output_h="315":class_name="'button gray icon small rounded'" v-on:update="value => form_config.example_image = value" v-if="form_config.example_image.length > 0"></cropper>
+      </div>
+    </div>
+  </div>
+</div>

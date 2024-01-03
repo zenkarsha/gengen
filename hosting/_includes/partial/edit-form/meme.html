@@ -1,0 +1,41 @@
+<div v-if="form_config.template == 'meme'">
+  <div class="form-group">
+    <h3 ref="meme_images_label" v-text="$t('label.upload_meme_image')"></h3>
+    <div class="fileupload-button">
+      <input type="file" v-on:change="local_preview($event, 'form_config.meme_images', 'meme_images', true)" accept="image/*" ref="meme_images" multiple>
+      <button type="button" class="button" v-on:click="$refs.meme_images.click()">
+        <i class="flaticon-upload padding-right"></i>
+        ${$t('button.choose_image')}
+      </button>
+    </div>
+    <div class="local-preview multiple large">
+      <div v-for="(image, index) in form_config.meme_images">
+        <div class="image">
+          <img :src="image">
+        </div>
+        <div class="tool-buttons">
+          <cropper :image="image" :enable_resize="true" :ratio_changer="true" :class_name="'button'" v-on:update="value => form_config.meme_images.splice(index, 1, value)"></cropper>
+          <button type="button" class="button" v-on:click="array_set_first(form_config.meme_images, image)" v-if="index != 0">
+            <i class="make-default"></i>
+          </button>
+          <button type="button" class="button" v-on:click="form_config.meme_images.splice(index, 1)" v-if="form_config.meme_images.length > 1">
+            <i class="flaticon-garbage"></i>
+          </button>
+        </div>
+      </div>
+      <div class="add-more" v-on:click="$refs.meme_images.click()">
+        <div class="image">
+          <img src="/images/upload-placeholder.jpg" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <h3 ref="default_top_text_label" v-text="$t('label.top_text')"></h3>
+    <textarea v-model="form_config.default_top_text" name="default_top_text" ref="default_top_text"></textarea>
+  </div>
+  <div class="form-group">
+    <h3 ref="default_bottom_text_label" v-text="$t('label.bottom_text')"></h3>
+    <textarea v-model="form_config.default_bottom_text" name="default_bottom_text" ref="default_bottom_text"></textarea>
+  </div>
+</div>

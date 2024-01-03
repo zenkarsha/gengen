@@ -1,0 +1,40 @@
+---
+permalink: /template/user-photos.html
+---
+
+<div class="template-wrapper user-photos-page">
+  <div class="container">
+    <div class="section page-header">
+      <div class="header-wrapper">
+        <h1 v-text="$t('nav.user_photos')"></h1>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="container two-column" v-if="user">
+      <user-side-nav></user-side-nav>
+      <div class="main-content" ref="main_content">
+        <p v-text="$t('message.user_photos_warning')"></p>
+        <div class="photos-list">
+          <div v-for="item in list" class="list-item" v-if="list.length > 0">
+            <div class="image" :style="{backgroundImage: 'url(' + load_image(item.image) + ')'}"></div>
+            <div class="tool-buttons">
+              <router-link :to="{ name: item.official ? 'official' : 'gen', params: { gid: item.gid  }}" class="button small gray rounded icon" target="_blank">
+                <i class="flaticon-lightning-electric-energy"></i>
+              </router-link>
+              <a :href="load_image(item.image)" download="image.png" class="button small gray rounded icon">
+                <i class="flaticon-download"></i>
+              </a>
+              <button type="button" class="button gray small rounded icon" v-on:click="delete_image(item)">
+                <i class="flaticon-garbage"></i>
+              </button>
+            </div>
+          </div>
+          <div v-if="list.length == 0" class="empty-list">
+            <h4 v-text="$t('text.empty_list')"></h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

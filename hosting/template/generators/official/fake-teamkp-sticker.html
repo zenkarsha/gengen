@@ -1,0 +1,42 @@
+---
+permalink: /template/generators/official/fake-teamkp-sticker.html
+---
+
+<div class="template-wrapper generator-template-wrapper generator-fake-teamkp-sticker">
+  <div id="generator_container">
+    <div id="generator_preview" ref="generator_preview">
+      <div class="preview-area shadow">
+        <div class="preview-area-wrapper">
+          <div class="loading" v-bind:class="{ 'on': loading_preview }">
+            <spinner></spinner>
+          </div>
+          <img :src="preview_image" />
+        </div>
+      </div>
+      <div id="output_container">
+        <div class="text-wrapper">
+          <div class="text" ref="text" :style="{ color: text_color }" v-html="nl2br(text)"></div>
+          <div class="highlight" ref="highlight" :style="{ color: highlight_color }" v-html="nl2br(highlight)"></div>
+          <div class="hashtag" v-text="hashtag"></div>
+        </div>
+      </div>
+    </div>
+    <div id="generator_form">
+      <div class="form-input">
+        <div class="form-group">
+          <h3 v-text="'上排文字'"></h3>
+          <textarea type="text" class="small" ref="text_input" v-model="text_input" v-on:focus="$event.target.select()" v-on:keydown="update_countdown"></textarea>
+        </div>
+        <div class="form-group">
+          <h3 v-text="'下排文字'"></h3>
+          <textarea type="text" class="small" ref="highlight_input" v-model="highlight_input" v-on:focus="$event.target.select()" v-on:keydown="update_countdown"></textarea>
+        </div>
+        <div class="form-group">
+          <h3 v-text="'Hashtag文字'"></h3>
+          <input type="text" ref="hashtag_input" v-model="hashtag_input" v-on:focus="$event.target.select()" v-on:keydown="update_countdown" />
+        </div>
+      </div>
+      <generator-action-buttons v-on:action="value => generator(value)"></generator-action-buttons>
+    </div>
+  </div>
+</div>

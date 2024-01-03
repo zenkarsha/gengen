@@ -1,0 +1,53 @@
+.generator-subtitle
+  #generator_preview
+    position relative
+
+    +below($tablet)
+      display block
+      line-height 0
+
+    .preview-area
+      +below($tablet)
+        display block
+        padding 16px
+      .preview-area-wrapper
+        position relative
+        width 100%
+        height 100%
+        display flex
+        justify-content center
+        align-items center
+      img
+        display flex
+        max-width 100%
+        max-height 100%
+        margin auto
+        object-fit contain
+        box-shadow none
+        +below($desktop)
+          max-height 40vh
+      .loading
+        __generator-loading()
+
+  #output_container
+    __font(noto)
+    line-height 0
+    font-weight bold
+    background white
+
+    .subtitle-text
+      position absolute
+      text-align center
+      color #000
+      font-size 30px
+      max-width 80%
+      user-select none!important
+      cursor default
+      font-weight bold
+      line-height 1.2
+      word-break break-all
+      &.text
+        color white
+      for $i in 1..8
+        &.stroke-{$i}
+          __text_stoke($i, #000)

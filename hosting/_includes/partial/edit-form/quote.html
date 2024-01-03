@@ -1,0 +1,41 @@
+<div v-if="form_config.template == 'quote'">
+  <div class="form-group">
+    <h3 ref="role_images_label" v-text="$t('label.upload_role_image')"></h3>
+    <div class="fileupload-button">
+      <input type="file" v-on:change="local_preview($event, 'form_config.role_images', 'role_images', true)" accept="image/*" ref="role_images" multiple>
+      <button type="button" class="button" v-on:click="$refs.role_images.click()">
+        <i class="flaticon-upload padding-right"></i>
+        ${$t('button.choose_image')}
+      </button>
+    </div>
+    <div class="local-preview multiple large">
+      <div v-for="(image, index) in form_config.role_images">
+        <div class="image">
+          <img :src="image">
+        </div>
+        <div class="tool-buttons">
+          <cropper :image="image" :viewport_w="254" :viewport_h="315" :output_w="254" :output_h="315" :class_name="'button'" v-on:update="value => form_config.role_images.splice(index, 1, value)"></cropper>
+          <button type="button" class="button" v-on:click="array_set_first(form_config.role_images ,image)" v-if="index != 0">
+            <i class="make-default"></i>
+          </button>
+          <button type="button" class="button" v-on:click="form_config.role_images.splice(index, 1)" v-if="form_config.role_images.length > 1">
+            <i class="flaticon-garbage"></i>
+          </button>
+        </div>
+      </div>
+      <div class="add-more" v-on:click="$refs.role_images.click()">
+        <div class="image">
+          <img src="/images/upload-placeholder.jpg" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <h3 ref="default_text_label" v-text="$t('label.default_quote')"></h3>
+    <textarea v-model="form_config.default_text" name="default_text" ref="default_text"></textarea>
+  </div>
+  <div class="form-group">
+    <h3 ref="role_name_label" v-text="$t('label.role_name')"></h3>
+    <input type="text" ref="role_name" v-model="form_config.role_name" name="role_name">
+  </div>
+</div>

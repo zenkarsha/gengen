@@ -1,0 +1,18 @@
+<div class="column">
+  <div class="form-group">
+    <h3 ref="cover_label" v-text="$t('label.generator_cover')"></h3>
+    <div class="fileupload-button">
+      <input type="file" v-on:change="local_preview($event, 'form_config.cover', 'cover_image', false)" accept="image/*" ref="cover_image" v-model="cover_input">
+      <button type="button" class="button" v-on:click="$refs.cover_image.click()">
+        <i class="flaticon-upload padding-right"></i>
+        ${$t('button.choose_image')}
+      </button>
+    </div>
+    <div class="local-preview">
+      <div class="image">
+        <img :src="form_config.cover" />
+      </div>
+      <cropper ref="cover_cropper" :image="form_config.cover" :viewport_w="320" :viewport_h="320" :output_w="400" :output_h="400" :disable_cancel="true" :disable_button="true" v-on:update="value => form_config.cover = value"></cropper>
+    </div>
+  </div>
+</div>

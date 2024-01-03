@@ -1,0 +1,97 @@
+---
+permalink: /template/generator.html
+---
+
+<div class="template-wrapper generator-page">
+  <span class="force-update">${force_update}</span>
+  <div class="generator-header container" v-if="config.title">
+    <div class="section generator-header" v-if="config.title">
+      <div class="header-wrapper">
+        <div class="header-avatar" :style="{ backgroundImage: 'url(' + q_avatar(config.cover) + ')' }"></div>
+        <div class="header-info">
+          <h1>
+            ${ config.multiple_langs && config.multiple_langs_select[$route.params.lang] ? config.multiple_title[$route.params.lang] : config.title }
+            <span class="label-group">
+              <span class="label gray small" v-if="config.public == false" v-text="$t('text.unlist')"></span>
+              <router-link class="label yellow small" :to="{ name: 'edit_generator', params: { _gid: config.gid }}" target="_blank" v-text="$t('button.edit_generator')" v-if="user && config.cid == user.uid"></router-link>
+            </span>
+          </h1>
+          <div class="labels">
+            <span class="template" v-bind:class="config.template" v-text="$t('template.' + config.template)"></span>
+            <span class="creator"><router-link :to="{name: 'creator', params: {lang: $route.params.lang, cid: config.cid}}" v-text="creator_name_list[config.cid]"></router-link></span>
+            <span class="visit-count">
+              <i class="flaticon-eye padding-right"></i>
+              ${visit_count}
+            </span>
+            <span class="use-count">
+              <i class="flaticon-download padding-right"></i>
+              ${use_count}
+            </span>
+          </div>
+          <div class="social-buttons">
+            <social-share :link="config.share_link"></social-share>
+            <iframe :src="'https://www.facebook.com/plugins/like.php?href=' + encodeURIComponent(config.share_link) + '&width=92&layout=button_count&action=like&size=small&show_faces=false&share=false&height=21&appId=221763288547490'" width="92" height="21" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+            <report-popup :model_name="'generators'" :doc_id="config.gid"></report-popup>
+          </div>
+        </div>
+      </div>
+      <div class="generator-description">
+        <div class="description-wrapper">
+          <p v-text="config.multiple_langs && config.multiple_langs_select[$route.params.lang] ? config.multiple_description[$route.params.lang] : config.description"></p>
+          <tag-link :text="config.multiple_langs && config.multiple_langs_select[$route.params.lang] ? config.multiple_tags[$route.params.lang] : config.tags" v-show="config.tags"></tag-link>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section border-top large-padding" v-if="config.event_information">
+    <div class="container medium">
+      <markdown-text :text="config.multiple_langs && config.multiple_langs_select[$route.params.lang] ? config.multiple_event_information[$route.params.lang] : config.event_information" :enable_read_more="true"></markdown-text>
+    </div>
+  </div>
+  <div class="generator-panel">
+    <div class="panel-wrapper">
+      <component v-bind:is="load_template" v-bind:config="config"></component>
+    </div>
+  </div>
+  <div class="section feed-list overview" v-if="config.gid && list.length > 0">
+    <div class="container">
+      <h3 class="headline center">
+        ${$t('title.user_submissions')}
+      </h3>
+      <div v-if="!empty_list">
+        <ul class="list center">
+          <li class="list-item" v-for="item in list" :key="item.pid">
+            <feed-list-item :config="item" :small_image="true"></feed-list-item>
+          </li>
+        </ul>
+        <div class="show-more">
+          <router-link :to="{name: 'feed', params: {lang: $route.params.lang, gid: config.gid}}" class="button rounded">
+            ${$t('button.view_list')}
+            <i class="flaticon-right-arrow padding-left"></i>
+          </router-link>
+        </div>
+      </div>
+      <div v-if="empty_list">
+        <h4 v-text="$t('text.empty_list')"></h4>
+      </div>
+    </div>
+  </div>
+  <div class="section gray small-padding" v-if="config.title">
+    <div class="container">
+      <small>
+        <div>
+          <b v-text="$t('label.image_copyright')"></b>：
+          <span v-if="config.image_copyright == 1" v-text="$t('text.personally_created_images')"></span>
+          <span v-if="config.image_copyright == 2" v-text="$t('text.cc_license_images')"></span>
+          <span v-if="config.image_copyright == 3" v-text="$t('text.legally_authorized_images')"></span>
+          <span v-if="config.image_copyright == 4" v-text="$t('text.other_copyright_state')"></span>
+        </div>
+        <div v-if="config.image_copyright_notice.trim() != ''">
+          <br />
+          <b v-text="$t('label.image_copyright_notice')"></b>：
+          <span v-html="linkifyHtml(html_encode(config.image_copyright_notice), {format: function (value, type) { if(value.length > 60){ return value.substring(0, 60) + '...'; } else { return value; }}})"></span>
+        </div>
+      </small>
+    </div>
+  </div>
+</div>

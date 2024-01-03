@@ -1,0 +1,42 @@
+.draggable-container
+  position absolute
+  top 0
+  left 0
+  bottom 0
+  right 0
+  margin 0 auto
+  overflow hidden
+  z-index 80
+
+  .draggable-wrapper
+    position relative
+    cursor move
+    img
+      width 100%
+      height 100%
+    &.hide-image img
+      opacity 0
+    .loading
+      width 140%
+      height 140%
+      position absolute
+      display flex
+      justify-content center
+      align-items center
+      background radial-gradient(circle, rgba(255, 255, 255, .8) 0%, rgba(255, 255, 255, 0) 70%)
+      top -20%
+      left -20%
+      opacity 0
+      transition opacity .25s ease-in-out
+      &.on
+        opacity 1
+
+
+.draggable-zone
+  position absolute
+  top 0
+  left 0
+  width 100%
+  height 100%
+  z-index -1000
+  overflow auto

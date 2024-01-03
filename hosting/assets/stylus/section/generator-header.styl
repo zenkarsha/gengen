@@ -1,0 +1,146 @@
+.section.generator-header
+  display flex
+  justify-content flex-start
+  align-items stretch
+  padding 32px 4px 32px 16px
+  min-height auto
+  width 100%
+  text-align left
+  border-bottom none
+
+  +below($desktop)
+    padding 0
+    padding 24px 4px 24px 16px
+
+  .official &
+    padding-top 40px
+    +below($tablet)
+      padding-top 24px
+      padding-bottom 8px
+
+  .header-wrapper
+    margin-right 24px
+    display flex
+    align-items center
+    +below($tablet)
+      width 100%
+      margin 0
+      flex-flow column
+
+  .header-avatar
+    width 96px
+    height 96px
+    min-width 96px
+    margin-right 24px
+    border-radius 50%
+    background-size cover
+    background-position center
+    +below($tablet)
+      width 80px
+      height 80px
+      min-width 80px
+      margin-right 0
+      margin-bottom 16px
+
+  .header-info
+    +below($tablet)
+      text-align center
+      h1
+        font-size 1.25rem
+      .labels
+        span
+          font-size 80%
+          &:before
+            margin-right 4px
+            width 12px
+            height 12px
+    h1
+      __font('hei')
+      margin 0 0 8px
+      font-size 1.5rem
+      letter-spacing .1rem
+      font-weight normal
+      display flex
+      align-items center
+      +below($tablet)
+        display block
+        .label-group
+          display block
+          margin-bottom 16px
+          margin-top 8px
+          .label
+            margin 0
+    .labels
+      span
+        display inline-flex
+        align-items center
+        padding 2px 0
+        margin-right 12px
+        font-size 75%
+        opacity .7
+        &:last-child
+          margin-right 0
+        &:before
+          content ''
+          display inline-block
+          background-size contain!important
+          margin-right 4px
+          width 16px
+          height 16px
+      .template
+        &.avatar:before
+          background url('/images/icon/avatar.svg') center no-repeat
+        &.subtitle:before
+          background url('/images/icon/subtitle.svg') center no-repeat
+        &.sticker:before
+          background url('/images/icon/sticker.svg') center no-repeat
+        &.quote:before
+          background url('/images/icon/quote.svg') center no-repeat
+        &.cover:before
+          background url('/images/icon/cover.svg') center no-repeat
+        &.meme:before
+          background url('/images/icon/meme.svg') center no-repeat
+      .creator:before
+        background url('/images/icon/creator.svg') center no-repeat
+      .visit-count:before
+      .use-count:before
+        width 0
+        margin 0
+
+  .social-buttons
+    display flex
+    align-items center
+    margin-top 4px
+    > *
+      margin 0
+      margin-right 8px
+      &:last-child
+        margin-right 0
+    +below($tablet)
+      justify-content center
+
+  .generator-description
+    width 50%
+    border-left 1px solid $color-gray
+    display flex
+    flex-direction column
+    align-items left
+    justify-content center
+    +below($desktop)
+      width auto
+      max-width 40%
+    +below($tablet)
+      display none
+    .description-wrapper
+      max-width 720px
+      margin 0
+      padding 0 24px
+      font-size 1rem
+      line-height 1.375
+      color $color-black-light
+      p
+        margin 0
+
+
+.section.generator-header + .section.generator-panel
+  padding-top 72px

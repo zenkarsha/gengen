@@ -1,0 +1,68 @@
+<div class="template-form-fields" v-if="template == 'avatar'">
+  <div class="section template-form avatar">
+    <div class="number-labels">
+      <span class="number frame-images" v-on:click="$refs.frame_images.click()">
+        <i>1</i>
+        <span v-text="$t('label.upload_frame_image')"></span>
+      </span>
+      <span class="number example-image" v-on:click="$refs.example_image.click()">
+        <i>2</i>
+        <span v-text="$t('label.upload_example_image')"></span>
+      </span>
+    </div>
+    <div class="frame-images-field" v-on:click="$refs.frame_images.click()"></div>
+  </div>
+  <div class="fields-column-2 mobile-full-width">
+    <div class="form-group column">
+      <h3 ref="frame_images_label" v-text="'⓵ ' + $t('label.upload_frame_image')"></h3>
+      <span class="field-message">${$t('message.avatar_frame_images')}</span>
+      <div class="fileupload-button">
+        <input type="file" v-on:change="local_preview($event, 'frame_images', 'frame_images', true)" accept="image/png" ref="frame_images" multiple>
+        <button type="button" class="button" v-on:click="$refs.frame_images.click()">
+          <i class="flaticon-upload padding-right"></i>
+          ${$t('button.choose_image')}
+        </button>
+      </div>
+      <div class="local-preview multiple">
+        <div v-for="(image, index) in frame_images">
+          <div class="image">
+            <img :src="image">
+          </div>
+          <div class="tool-buttons">
+            <cropper :image="image" :viewport_w="320" :viewport_h="320" :output_w="600" :output_h="600" :class_name="'button'" v-on:update="value => frame_images.splice(index, 1, value)"></cropper>
+            <button type="button" class="button" v-on:click="array_set_first(frame_images, image)" v-if="index != 0">
+              <i class="make-default"></i>
+            </button>
+            <button type="button" class="button" v-on:click="frame_images.splice(index, 1)">
+              <i class="flaticon-garbage"></i>
+            </button>
+          </div>
+        </div>
+        <div class="add-more" v-on:click="$refs.frame_images.click()" v-if="frame_images.length > 0">
+          <div class="image">
+            <img src="/images/upload-placeholder.jpg" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group column">
+      <h3 ref="example_image_label" v-text="'⓶ ' + $t('label.upload_example_image')"></h3>
+      <span class="field-message">${$t('message.avatar_example_image')}</span>
+      <div class="fileupload-button">
+        <input type="file" v-on:change="local_preview($event, 'example_image', 'example_image', false)" accept="image/*" ref="example_image">
+        <button type="button" class="button" v-on:click="$refs.example_image.click()">
+          <i class="flaticon-upload padding-right"></i>
+          ${$t('button.choose_image')}
+        </button>
+      </div>
+      <div class="local-preview" v-if="example_image.length > 0">
+        <div class="image">
+          <img :src="example_image">
+        </div>
+        <div class="tool-buttons">
+          <cropper :image="example_image" :output_w="600" :output_h="600" :class_name="'button gray icon small rounded'" v-on:update="value => example_image = value" v-if="example_image.length > 0"></cropper>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

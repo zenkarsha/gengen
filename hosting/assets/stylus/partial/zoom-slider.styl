@@ -1,0 +1,33 @@
+.zoom-slider-wrapper
+  width 100%
+  display flex
+  justify-content space-between
+  align-items center
+
+  .zoom-slider
+    flex 1
+    order 2
+    margin 0 24px
+    background darken($color-black, 10%)
+    border 0
+    .ui-slider-handle.ui-corner-all.ui-state-default
+      border 0
+      background lighten($color-black, 50%)
+
+  .zoom-out
+  .zoom-in
+    width 20px
+    height 20px
+    line-height 22px
+    text-align center
+    color $color-white
+    background lighten($color-black, 20%)
+    border 0
+    border-radius 50%
+    cursor pointer
+
+  .zoom-out
+    order 1
+
+  .zoom-in
+    order 3

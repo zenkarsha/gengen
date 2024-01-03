@@ -1,0 +1,31 @@
+---
+permalink: /template/generators/official/kangxi-amnesty.html
+---
+
+<div class="template-wrapper generator-template-wrapper generator-kangxi-amnesty">
+  <div id="generator_container">
+    <div id="generator_preview" ref="generator_preview">
+      <div class="preview-area">
+        <div class="preview-area-wrapper">
+          <div class="loading" v-bind:class="{ 'on': loading_preview }">
+            <spinner></spinner>
+          </div>
+          <img :src="preview_image" />
+        </div>
+      </div>
+      <div id="output_container">
+        <img ref="basemap_image" :src="basemap_image" />
+        <div class="text" ref="text" v-text="text"></div>
+      </div>
+    </div>
+    <div id="generator_form">
+      <div class="form-input">
+        <div class="form-group">
+          <h3 v-text="$t('title.content_text')"></h3>
+          <input type="text" name="text_input" ref="text_input" v-model="text_input" v-on:focus="$event.target.select()" v-on:keydown="update_countdown">
+        </div>
+      </div>
+      <generator-action-buttons v-on:action="value => generator(value)"></generator-action-buttons>
+    </div>
+  </div>
+</div>

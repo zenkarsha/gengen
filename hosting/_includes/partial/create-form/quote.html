@@ -1,0 +1,69 @@
+<div class="template-form-fields" v-if="template == 'quote'">
+  <div class="section template-form quote">
+    <div class="number-labels">
+      <span class="number role-images" v-on:click="$refs.role_images.click()">
+        <i>1</i>
+        <span v-text="$t('label.upload_role_image')"></span>
+      </span>
+      <span class="number default-text" v-on:click="zenscroll.to($refs.default_text_label); $refs.default_text.focus();">
+        <i>2</i>
+        <span v-text="$t('label.default_quote')"></span>
+      </span>
+      <span class="number role-name" v-on:click="zenscroll.to($refs.role_name_label); $refs.role_name.focus();">
+        <i>3</i>
+        <span v-text="$t('label.role_name')"></span>
+      </span>
+    </div>
+    <div class="quote-background">
+      <div class="role-images-field" v-on:click="$refs.role_images.click()"></div>
+      <div class="default-text-field" v-on:click="zenscroll.to($refs.default_text_label); $refs.default_text.focus();">
+        〇〇〇〇〇〇〇〇<br/>
+        〇〇〇〇〇〇〇〇<br/>
+        〇〇〇〇〇〇〇〇
+      </div>
+      <div class="role-name-field" v-on:click="zenscroll.to($refs.role_name_label); $refs.role_name.focus();">〇〇〇〇〇</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <h3 ref="role_images_label" v-text="'⓵ ' + $t('label.upload_role_image')"></h3>
+    <span class="field-message">${$t('message.role_images')}</span>
+    <div class="fileupload-button">
+      <input type="file" v-on:change="local_preview($event, 'role_images', 'role_images', true)" accept="image/*" ref="role_images" multiple>
+      <button type="button" class="button" v-on:click="$refs.role_images.click()">
+        <i class="flaticon-upload padding-right"></i>
+        ${$t('button.choose_image')}
+      </button>
+    </div>
+    <div class="local-preview multiple large">
+      <div v-for="(image, index) in role_images">
+        <div class="image">
+          <img :src="image">
+        </div>
+        <div class="tool-buttons">
+          <cropper :image="image" :viewport_w="210" :viewport_h="260" boundary_w="280" boundary_h="280" :output_w="254" :output_h="315" :class_name="'button icon gray small rounded'" v-on:update="value => role_images.splice(index, 1, value)"></cropper>
+          <button type="button" class="button" v-on:click="array_set_first(role_images ,image)" v-if="index != 0">
+            <i class="make-default"></i>
+          </button>
+          <button type="button" class="button" v-on:click="role_images.splice(index, 1)">
+            <i class="flaticon-garbage"></i>
+          </button>
+        </div>
+      </div>
+      <div class="add-more" v-on:click="$refs.role_images.click()" v-if="role_images.length > 0">
+        <div class="image">
+          <img src="/images/upload-placeholder.jpg" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <h3 ref="default_text_label" v-text="'⓶ ' + $t('label.default_quote')"></h3>
+    <span class="field-message">${$t('message.quote_default_text')}</span>
+    <textarea v-model="default_text" name="default_text" ref="default_text"></textarea>
+  </div>
+  <div class="form-group">
+    <h3 ref="role_name_label" v-text="'⓷ ' + $t('label.role_name')"></h3>
+    <span class="field-message">${$t('message.role_name')}</span>
+    <input type="text" ref="role_name" v-model="role_name" name="role_name">
+  </div>
+</div>

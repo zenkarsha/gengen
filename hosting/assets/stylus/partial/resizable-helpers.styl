@@ -1,0 +1,124 @@
+.resizable
+  position relative
+  min-height 20px
+
+  [class^=ui-resizable]
+  [class^=ui-rotatable]
+    opacity 0
+
+  &.on
+    img
+      outline 1px dashed $color-yellow
+    [class^=ui-resizable]
+    [class^=ui-rotatable]
+      opacity 1
+
+
+.ui-resizable-handle
+  width 10px
+  height 10px
+  background-color $color-yellow
+  outline 1px solid #000
+  position absolute
+
+  +below($tablet)
+    width 10px * 1.5
+    height 10px * 1.5
+
+
+.ui-resizable-nw
+  left -.5 * 10px
+  top -.5 * 10px
+  cursor nw-resize
+
+  +below($tablet)
+    left -.75 * 10px
+    top -.75 * 10px
+
+
+.ui-resizable-ne
+  top -.5 * 10px
+  right -.5 * 10px
+  cursor ne-resize
+
+  +below($tablet)
+    top -.75 * 10px
+    right -.75 * 10px
+
+
+.ui-resizable-sw
+  bottom -.5 * 10px
+  left -.5 * 10px
+  cursor sw-resize
+
+  +below($tablet)
+    bottom -.75 * 10px
+    left -.75 * 10px
+
+
+.ui-resizable-se
+  bottom -.5 * 10px
+  right -.5 * 10px
+  cursor se-resize
+
+  +below($tablet)
+    bottom -.75 * 10px
+    right -.75 * 10px
+
+
+.ui-resizable-n
+  top -.5 * 10px
+  left 50%
+  cursor n-resize
+
+  +below($tablet)
+    top -.75 * 10px
+    left "calc(50% - %s)" % (10px * .75)
+
+
+.ui-resizable-s
+  bottom -.5 * 10px
+  left 50%
+  cursor s-resize
+
+  +below($tablet)
+    bottom -.75 * 10px
+    left "calc(50% - %s)" % (10px * .75)
+
+
+.ui-resizable-w
+  left -.5 * 10px
+  top "calc(50% - %s)" % (10px / 2)
+  cursor w-resize
+
+  +below($tablet)
+    left -.75 * 10px
+    top "calc(50% - %s)" % (10px * .75)
+
+
+.ui-resizable-e
+  right -.5 * 10px
+  top "calc(50% - %s)" % (10px / 2)
+  cursor e-resize
+
+  +below($tablet)
+    right -.75 * 10px
+    top "calc(50% - %s)" % (10px * .75)
+
+
+.ui-rotatable-handle
+  height 10px * 1.5
+  width 10px * 1.5
+  cursor pointer
+  right -.75 * 10px
+  top -.75 * 10px
+  position absolute
+  background $color-yellow
+  border-radius 50%
+  border 1px solid #000
+
+  +below($tablet)
+    height 10px * 2
+    width 10px * 2
+    right -1 * 10px
+    top -1 * 10px

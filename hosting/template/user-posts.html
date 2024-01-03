@@ -1,0 +1,36 @@
+---
+permalink: /template/user-posts.html
+---
+
+<div class="template-wrapper user-posts-page">
+  <div class="container">
+    <div class="section page-header">
+      <div class="header-wrapper">
+        <h1 v-text="$t('nav.user_posts')"></h1>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="container two-column" v-if="user">
+      <user-side-nav></user-side-nav>
+      <div class="main-content" ref="main_content">
+        <div class="posts-list">
+          <div v-for="item in list" class="list-item" v-if="list.length > 0">
+            <div class="image" :style="{backgroundImage: 'url(' + w_square(item.image, 400) + ')'}"></div>
+            <div class="tool-buttons">
+              <router-link :to="{ name: 'feed_post', params: { pid: item.pid  }}" class="button small gray rounded icon">
+                <i class="flaticon-link"></i>
+              </router-link>
+              <button type="button" class="button gray small rounded icon" v-on:click="delete_post(item)">
+                <i class="flaticon-garbage"></i>
+              </button>
+            </div>
+          </div>
+          <div v-if="list.length == 0" class="empty-list">
+            <h4 v-text="$t('text.empty_list')"></h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

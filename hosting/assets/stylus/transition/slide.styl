@@ -1,0 +1,17 @@
+.slide-enter-active
+  animation slide-in .5s
+
+.slide-leave-active
+  animation slide-out .5s
+
+@keyframes slide-in
+  0%
+    transform translate(100%, 0)
+  100%
+    transform translate(-100%, 0)
+
+@keyframes slide-out
+  0%
+    transform translate(-100%, 0)
+  100%
+    transform translate(100%, 0)

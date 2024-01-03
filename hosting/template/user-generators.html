@@ -1,0 +1,81 @@
+---
+permalink: /template/user-generators.html
+---
+
+<div class="template-wrapper user-generators-page">
+  <div class="container">
+    <div class="section page-header">
+      <div class="header-wrapper">
+        <h1 v-text="$t('nav.user_generators')"></h1>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="container two-column" v-if="user">
+      <user-side-nav></user-side-nav>
+      <div class="main-content" v-if="edit_mode == false" ref="main_content">
+        <div class="generator-list" v-if="!empty_list">
+          <ul class="list" v-show="list.length > 0">
+            <li class="list-item" v-for="item in list" :key="item.gid">
+              <user-generator-list-item :config="item" v-on:edit="value => edit_generator(value)"></user-generator-list-item>
+            </li>
+          </ul>
+          <ul class="list placeholder" v-if="list.length == 0">
+            <li class="list-item" v-for="i in 6">
+              <user-generator-list-placeholder></user-generator-list-placeholder>
+            </li>
+          </ul>
+          <div class="show-more" v-if="!no_more_data && list.length > 0">
+            <button type="button" class="button rounded" v-on:click="show_more">
+              ${$t('button.show_more')}
+              <i class="flaticon-plus-symbol padding-left"></i>
+            </button>
+          </div>
+        </div>
+        <div v-if="empty_list">
+          <h4 v-text="$t('text.empty_list')"></h4>
+        </div>
+      </div>
+      <div class="main-content edit-form" v-if="edit_mode">
+        <div class="container go-back-button">
+          <router-link :to="{name: 'user_generators', params: {lang: $route.params.lang}}">
+            <i class="flaticon-left-arrow"></i>
+            ${$t('text.go_back')}
+          </router-link>
+        </div>
+        <div class="container">
+          <div class="label yellow">
+            <span v-text="$t('text.generator_url')"></span>: <b><router-link :to="{name: 'gen', params: {lang: $route.params.lang, gid: form_config.gid}}" v-text="'https://gengen.co/' + $route.params.lang + 'g/' + form_config.gid" target="_blank"></router-link></b>
+          </div>
+          <h2 v-text="$t('title.basic_information')"></h2>
+          <div class="fields-column-2 pad-full-width">
+            {% include partial/edit-form/generator-basic.html %}
+            {% include partial/edit-form/generator-cover.html %}
+          </div>
+          <hr />
+          <h2 v-text="$t('title.generator_setting')"></h2>
+          {% include partial/edit-form/sticker.html %}
+          {% include partial/edit-form/avatar.html %}
+          {% include partial/edit-form/subtitle.html %}
+          {% include partial/edit-form/quote.html %}
+          {% include partial/edit-form/cover.html %}
+          {% include partial/edit-form/meme.html %}
+          <hr />
+          <button type="button" class="button" v-on:click="update_generator" v-text="$t('button.update')" :disabled="form_edited == false"></button>
+          <button type="button" class="button gray" v-on:click="cancel_edit_generator" v-text="$t('button.cancel')" v-if="form_edited == true"></button>
+        </div>
+        <div class="container">
+          <div class="danger-zone">
+            <h2 v-text="$t('title.danger_zone')"></h2>
+            <hr />
+            <div class="form-group">
+              <h3 v-text="$t('label.delete_this_generator')"></h3>
+              <span class="field-message">${$t('message.delete_generator')}</span>
+              <button type="button" class="button danger" v-on:click="confirm_delete" v-text="$t('button.delete_generator')"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

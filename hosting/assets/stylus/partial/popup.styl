@@ -1,0 +1,53 @@
+.popup-container
+  display flex
+  position fixed
+  top 0
+  right 0
+  bottom 0
+  left 0
+  z-index 200000
+  flex-direction row
+  text-align center
+  justify-content center
+  padding 16px!important
+  color $color-black!important
+  background rgba(0, 0, 0, .8)
+  overflow-x hidden
+  overflow-y auto
+  -webkit-overflow-scrolling touch
+
+  +below($tablet)
+    background darken($color-gray, 50%)
+
+  .popup-wrapper
+    position relative
+    margin auto
+    flex-direction column
+    justify-content center
+    width auto
+    max-width 100%
+    border-radius $s-radius
+    background $color-white
+    width 32rem
+    box-shadow 0px 0px 100px rgba(0, 0, 0, .1)
+
+  .popup-header
+  .popup-content
+  .popup-footer
+    padding 12px
+    &.black
+      background $color-black
+      color $color-white
+    &.gray
+      background $color-gray-yellow
+    .button
+      margin-top 0
+      margin-bottom 0
+
+  &.mobile-fullscreen
+    +below($tablet)
+      padding 0
+      .popup-wrapper
+        padding 0
+        background $color-gray-yellow
+        box-shadow none

@@ -1,0 +1,69 @@
+---
+permalink: /template/feed-post.html
+---
+
+<div>
+  <div class="template-wrapper feed-item-page" v-if="loading_failed == false">
+    <span class="force-update">${force_update}</span>
+    <div class="container">
+      <div class="section page-header no-border">
+        <div class="container">
+          <div class="header-wrapper center">
+            <div class="header-button">
+              <router-link :to="{ name: 'feed', params: { gid: post.gid  }}" class="button gray small rounded">
+                <i class="flaticon-left-arrow padding-right"></i>
+                ${$t('button.go_back_feed')}
+              </router-link>
+              <router-link :to="{ name: post.official ? 'official' : 'gen', params: { gid: post.gid }}" class="button small rounded">
+                <i class="flaticon-lightning-electric-energy padding-right"></i>
+                ${$t('button.use_generator')}
+              </router-link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section gray">
+      <div class="container small">
+        <div class="feed-item">
+          <div class="feed-post">
+            <div class="post-image">
+              <img :src="post.image == '' ? '/images/subtitle-placeholder.jpg' : w_80(post.image)" />
+            </div>
+            <div class="post-body">
+              <p class="message" v-if="post.message">
+                <span v-for="line in post.message.split('\n')" v-text="line"></span>
+              </p>
+              <div class="image-info" v-if="generator.title != ''">
+                <span class="image-creator">
+                  <i class="flaticon-user padding-right"></i>
+                  ${creator_name_list[post.uid]}
+                </span>
+                <br class="desktop-hide" />
+                <span class="image-visit-count">
+                  <i class="flaticon-eye padding-right"></i>
+                  ${visit_count}
+                </span>
+                <feed-like-button :pid="pid"></feed-like-button>
+                <feed-share-button :imgur_id="post.pid" :imgur_link="post.image"></feed-share-button>
+                <more-action-dropdwon>
+                  <report-popup :model_name="'feed'" :doc_id="doc_id" :class_name="'button'" v-show="!user || (user && user.uid != post.uid)"></report-popup>
+                  <button type="button" class="button" v-on:click="delete_post_confirm" v-if="user && user.uid == post.uid">
+                    <i class="flaticon-garbage padding-right"></i>
+                    ${$t('button.delete_post')}
+                  </button>
+                </more-action-dropdwon>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="container small">
+        <feed-comments :pid="post.pid"></feed-comments>
+      </div>
+    </div>
+  </div>
+  <page-not-found v-if="loading_failed"></page-not-found>
+</div>

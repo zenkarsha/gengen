@@ -1,0 +1,54 @@
+.section.page-header
+  display flex
+  justify-content flex-start
+  align-items center
+  padding 16px
+  padding-left 4px
+  margin-top 16px
+  border-bottom 1px solid $color-gray-light
+  min-height auto
+
+  +below($tablet)
+    border-bottom none
+    display block
+
+  &.center
+    justify-content center
+    padding 16px
+    +below($tablet)
+      padding 0
+
+  &.no-border
+    border 0
+
+  h1
+    __font('hei')
+    margin 16px 8px 32px
+    font-size 2rem
+    letter-spacing .1rem
+    font-weight 500
+    +below($tablet)
+      font-size 2rem
+      letter-spacing 0
+      margin 8px 0
+
+  .header-wrapper
+    margin 0
+    display flex
+    align-items center
+    &.center
+      flex-direction column
+      flex 1
+      justify-content center
+      text-align center
+    &.none-flex
+      display block
+
+
+.header-banner
+  margin 0
+  width 100%
+
+  img
+    width 100%
+    height auto

@@ -1,0 +1,65 @@
+<div class="template-form-fields" v-if="template == 'meme'">
+  <div class="section template-form meme">
+    <div class="number-labels">
+      <span class="number meme-images" v-on:click="$refs.meme_images.click()">
+        <i>1</i>
+        <span v-text="$t('label.upload_meme_image')"></span>
+      </span>
+      <span class="number default-top-text" v-on:click="zenscroll.to($refs.default_top_text_label); $refs.default_top_text.focus();">
+        <i>2</i>
+        <span v-text="$t('label.top_text')"></span>
+      </span>
+      <span class="number default-bottom-text" v-on:click="zenscroll.to($refs.default_bottom_text_label); $refs.default_bottom_text.focus();">
+        <i>3</i>
+        <span v-text="$t('label.bottom_text')"></span>
+      </span>
+    </div>
+    <div class="default-top-text-field" v-on:click="zenscroll.to($refs.default_top_text_label); $refs.default_top_text.focus();">〇〇〇〇〇〇〇〇</div>
+    <div class="default-bottom-text-field" v-on:click="zenscroll.to($refs.default_bottom_text_label); $refs.default_bottom_text.focus();">×××××××××××</div>
+    <div class="meme-images-field">
+      <div class="example-meme-image"></div>
+    </div>
+  </div>
+  <div class="form-group">
+    <h3 ref="meme_images_label" v-text="'⓵ ' + $t('label.upload_meme_image')"></h3>
+    <span class="field-message">${$t('message.meme_images')}</span>
+    <div class="fileupload-button">
+      <input type="file" v-on:change="local_preview($event, 'meme_images', 'meme_images', true)" accept="image/*" ref="meme_images" multiple>
+      <button type="button" class="button" v-on:click="$refs.meme_images.click()">
+        <i class="flaticon-upload padding-right"></i>
+        ${$t('button.choose_image')}
+      </button>
+    </div>
+    <div class="local-preview multiple large">
+      <div v-for="(image, index) in meme_images">
+        <div class="image">
+          <img :src="image">
+        </div>
+        <div class="tool-buttons">
+          <cropper :image="image" :enable_resize="true" :ratio_changer="true" :class_name="'button icon gray small rounded'" v-on:update="value => meme_images.splice(index, 1, value)"></cropper>
+          <button type="button" class="button" v-on:click="array_set_first(meme_images ,image)" v-if="index != 0">
+            <i class="make-default"></i>
+          </button>
+          <button type="button" class="button" v-on:click="meme_images.splice(index, 1)">
+            <i class="flaticon-garbage"></i>
+          </button>
+        </div>
+      </div>
+      <div class="add-more" v-on:click="$refs.meme_images.click()" v-if="meme_images.length > 0">
+        <div class="image">
+          <img src="/images/upload-placeholder.jpg" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <h3 ref="default_top_text_label" v-text="'⓶ ' + $t('label.top_text')"></h3>
+    <span class="field-message">${$t('message.meme_top_text')}</span>
+    <textarea v-model="default_top_text" name="default_top_text" ref="default_top_text"></textarea>
+  </div>
+  <div class="form-group">
+    <h3 ref="default_bottom_text_label" v-text="'⓷ ' + $t('label.bottom_text')"></h3>
+    <span class="field-message">${$t('message.meme_bottom_text')}</span>
+    <textarea v-model="default_bottom_text" name="default_bottom_text" ref="default_bottom_text"></textarea>
+  </div>
+</div>

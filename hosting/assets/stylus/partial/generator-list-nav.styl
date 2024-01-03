@@ -1,0 +1,28 @@
+.generator-list-nav
+  display flex
+  justify-content center
+  align-items center
+
+  a
+    position relative
+    padding 8px 16px
+    font-size .95rem
+    color $color-black-light
+    +below($tablet)
+      font-size .75rem
+    &:after
+      content ''
+      display block
+      margin: 0 auto
+      height 1px
+      width 0%
+      background $color-black
+      transition all $t-sec
+    &:hover
+    &.router-link-exact-active
+      color $color-black
+      &:after
+        width: 100%
+    &:first-child
+      &:before
+        display none

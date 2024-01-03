@@ -1,0 +1,96 @@
+.section.create-form
+  position relative
+  min-height 60vh
+  padding 0
+
+  +below($tablet)
+    padding 16px 0
+
+  .create-form-wrapper
+    border-radius $m-radius
+
+  .step-action
+    display flex
+    justify-content space-between
+    margin auto
+    border-top 1px solid $color-gray-light
+    padding-top 8px
+    .button
+      min-width 180px
+      +below($tablet)
+        min-width 120px
+    &:before
+      content ''
+      order 2
+    .left-button
+      order 1
+    .right-button
+      order 3
+
+  .form-steps
+    display flex
+    flex-wrap wrap
+    justify-content space-between
+    margin 0 auto 32px
+    +below($tablet)
+      margin-bottom 16px
+    .step
+      position relative
+      z-index 10
+      text-align center
+      flex 1
+      &:before
+        content ''
+        position absolute
+        top 24px
+        left 0
+        right 0
+        height 2px
+        background darken($color-black-dark, 5%)
+        +below($tablet)
+          top 14px
+      &:first-child:before
+        left 50%
+      &:last-child:before
+        right 50%
+      .step-number
+        position relative
+        z-index 10
+        margin 0 auto 16px
+        width 50px
+        height 50px
+        line-height 50px
+        color $color-white
+        background darken($color-black-dark, 5%)
+        border 2px solid darken($color-black-dark, 5%)
+        border-radius 50%
+        text-align center
+        font-size 1.3rem
+        cursor pointer
+        +below($tablet)
+          width 30px
+          height 30px
+          line-height 28px
+          font-size 1rem
+          margin-bottom 8px
+
+      &.active .step-number
+        background $color-yellow
+        color $color-black-dark
+
+      .step-title
+        text-align center
+        +below($tablet)
+          font-size .65rem
+
+  .generator-cover-type
+    margin 16px 0
+    label
+      cursor pointer
+    label + label
+      margin-left 8px
+
+  .create-guide
+    img
+      width 100%
+      height auto

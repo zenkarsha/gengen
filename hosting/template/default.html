@@ -1,0 +1,17 @@
+---
+permalink: /template/default.html
+---
+
+<div class="template-wrapper default-page">
+  <div class="container">
+    <div class="header-banner" v-if="typeof banner !== 'undefined'">
+      <img :src="banner" />
+    </div>
+  </div>
+  <div class="section">
+    <div class="container small">
+      <h1 class="headline" v-text="title"></h1>
+      <markdown-text :text="content"></markdown-text>
+    </div>
+  </div>
+</div>

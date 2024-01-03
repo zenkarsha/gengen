@@ -1,0 +1,25 @@
+.link-list
+  li
+    display flex
+    justify-content space-between
+    align-items center
+    padding 8px
+    transition all $t-sec ease-in-out
+    +above($desktop)
+      &:hover
+        background $color-yellow
+    &:nth-child(2n - 1)
+      background $color-gray-yellow
+    .image
+      display flex
+      cursor pointer
+    .link
+      +below($tablet)
+        display none
+    .buttons
+      margin-right 16px
+      > .button
+        margin 0
+        margin-right 4px
+        &:last-child
+          margin-right 0

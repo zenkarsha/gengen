@@ -1,0 +1,19 @@
+.more-actions
+  display flex
+  flex-wrap wrap
+
+  .button
+    margin 0
+    width calc(50% - 8px)
+    &:nth-child(1)
+    &:nth-child(2)
+      margin-bottom 16px
+    &:nth-child(2n)
+      margin-left 16px
+    +below($tablet)
+      width 100%!important
+      margin-bottom 8px!important
+      &:last-child
+        margin-bottom 0!important
+      &:nth-child(2n)
+        margin-left 0

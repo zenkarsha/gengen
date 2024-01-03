@@ -1,0 +1,51 @@
+---
+permalink: /template/user-account.html
+---
+
+<div class="template-wrapper user-account-page">
+  <div class="container">
+    <div class="section page-header">
+      <div class="header-wrapper">
+        <h1 v-text="$t('nav.user_account')"></h1>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="container two-column">
+      <user-side-nav></user-side-nav>
+      <div class="main-content user-account" ref="main_content">
+        <div class="fields-column-2">
+          <div class="column-8" v-if="user">
+            <div class="form-group">
+              <h2 v-text="$t('title.basic_setting')"></h2>
+              <div v-if="user.displayName">
+                <h3 v-text="$t('label.user_name')"></h3>
+                <span v-text="user.displayName"></span>
+              </div>
+              <div class="form-group">
+                <h3 v-text="$t('title.language')"></h3>
+                <div v-for="(value, key, index) in langs" style="margin-bottom: 8px;">
+                  <label><input type="radio" v-model="language" :value="key"> ${value}</label>
+                </div>
+              </div>
+            </div>
+            <div v-if="is_creator">
+              <hr class="large" />
+              <h2 v-text="$t('title.creator_setting')"></h2>
+              <div class="form-group" v-if="creator.name">
+                <h3 v-text="$t('label.creator_name')"></h3>
+                <input type="text" v-model="creator_name">
+              </div>
+              <button type="button" class="button" v-on:click="save_change" :disabled="form_changed == false && creator_name.trim() != ''" v-text="$t('button.update')"></button>
+            </div>
+          </div>
+          <div class="column-4" v-if="user">
+            <div class="user-avatar">
+              <img :src="handle_user_avatar()">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

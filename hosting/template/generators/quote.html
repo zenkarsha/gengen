@@ -1,0 +1,51 @@
+---
+permalink: /template/generators/quote.html
+---
+
+<div class="template-wrapper generator-template-wrapper generator-quote">
+  <div id="generator_container">
+    <div id="generator_preview" ref="generator_preview">
+      <div class="preview-area shadow">
+        <div class="loading" v-bind:class="{ 'on': loading_preview }">
+          <spinner></spinner>
+        </div>
+        <div class="preview-area-wrapper">
+          <img :src="preview_image" />
+        </div>
+      </div>
+      <div id="output_container" :style="{ width: px(canvas_w), height: px(canvas_h) }">
+        <div class="quote-image">
+          <img ref="role_image" :src="role_image" />
+        </div>
+        <div class="quote-text" ref="quote_text" v-html="nl2br(html_encode(quote_text))" :style="{ left: px(quote_x), top: px(quote_y), fontSize: px(quote_size), maxHeight: px(calc_max_height) }"></div>
+        <div class="role-name" ref="role_name" v-text="html_encode(role_name)" :style="{ right: px(padding), bottom: px(padding), fontSize: px(default_quote_size * 0.75) }"></div>
+      </div>
+    </div>
+    <div id="generator_form">
+      <div class="form-input">
+        <div class="form-group">
+          <h3 v-text="$t('title.quote_text')"></h3>
+          <textarea v-model="quote_input" v-on:focus="$event.target.select()" v-on:keydown="update_countdown"></textarea>
+        </div>
+        <div class="form-group">
+          <h3 v-text="$t('title.role_name')"></h3>
+          <input type="text" v-model="role_name" v-on:focus="$event.target.select()" v-on:keydown="update_countdown" />
+        </div>
+        <div class="form-group">
+          <h3 v-text="$t('title.text_size')"></h3>
+          <zoom-slider :min="30" :max="60" :step="5" :default="quote_size" @changed="value => quote_size = value" ref="text_size_slider" v-once></zoom-slider>
+        </div>
+        <div class="form-group">
+          <h3 v-text="$t('title.choose_role_image')"></h3>
+          <div id="basemap_list_container" class="image-select-list">
+            <label v-for="item in config.role_images" :class="{ 'active' : item == role_image_select }">
+              <div class="image-item" :style="{ backgroundImage: 'url(' + q_quote(item) + ')' }"></div>
+              <input type="radio" v-model="role_image_select" :value="q_quote(item)">
+            </label>
+          </div>
+        </div>
+      </div>
+      <generator-action-buttons :preview_mode="config.preview_mode ? true : false" v-on:action="value => generator(value)"></generator-action-buttons>
+    </div>
+  </div>
+</div>

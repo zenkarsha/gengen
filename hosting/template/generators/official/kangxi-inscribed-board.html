@@ -1,0 +1,43 @@
+---
+permalink: /template/generators/official/kangxi-inscribed-board.html
+---
+
+<div class="template-wrapper generator-template-wrapper generator-kangxi-inscribed-board">
+  <div id="generator_container">
+    <div id="generator_preview" ref="generator_preview">
+      <div class="preview-area shadow">
+        <div class="preview-area-wrapper">
+          <div class="loading" v-bind:class="{ 'on': loading_preview }">
+            <spinner></spinner>
+          </div>
+          <img :src="preview_image" />
+        </div>
+      </div>
+      <div id="output_container">
+        <img ref="basemap_image" :src="basemap_image" />
+        <div class="text" ref="text">
+          <span v-text="text" :style="{ marginBottom: px(text_margin) }"></span>
+        </div>
+      </div>
+    </div>
+    <div id="generator_form">
+      <div class="form-input">
+        <div class="form-group">
+          <h3 v-text="$t('title.content_text')"></h3>
+          <span class="field-message">${$t('message.inscribed_board_text')}</span>
+          <input type="text" name="text_input" ref="text_input" v-model="text_input" v-validate="'required|max:4'" :class="{'input': true, 'is-danger': errors.has('text_input') }" v-on:keydown="update_countdown">
+        </div>
+        <div class="form-group">
+          <h3 v-text="$t('title.choose_background_image')"></h3>
+          <div id="basemap_list_container" class="image-select-list">
+            <label v-for="(item, index) in basemap_images" :class="{ 'active' : q_auto(item) == basemap_image_select }" v-on:click="index > 1 ? text_margin = 0 : text_margin = 45">
+              <div class="image-item" :style="{ backgroundImage: 'url(' + q_label(item) + ')' }"></div>
+              <input type="radio" v-model="basemap_image_select" :value="q_auto(item)">
+            </label>
+          </div>
+        </div>
+      </div>
+      <generator-action-buttons v-on:action="value => generator(value)"></generator-action-buttons>
+    </div>
+  </div>
+</div>

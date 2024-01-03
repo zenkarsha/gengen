@@ -1,0 +1,31 @@
+<div class="form-group">
+  <h3 ref="cover_label" v-text="$t('label.generator_cover')"></h3>
+  <div class="generator-cover-type">
+    <label><input type="radio" v-model="cover_type" value="default" v-on:change="handle_cover_type"> ${$t('text.default_cover')}</label>
+    <label><input type="radio" v-model="cover_type" value="custom" v-on:change="handle_cover_type"> ${$t('text.custom_cover')}</label>
+  </div>
+  <div class="fields-column-2 mobile-full-width">
+    <div class="column">
+      <div class="fileupload-button" v-show="cover_type == 'custom'">
+        <input type="file" v-on:change="local_preview($event, 'cover', 'cover_image', false)" accept="image/*" ref="cover_image" v-model="cover_input" />
+        <button type="button" class="button" v-on:click="handle_choose_cover_image">
+          <i class="flaticon-upload"></i>
+          ${$t('button.choose_image')}
+        </button>
+      </div>
+      <div class="local-preview">
+        <div class="image">
+          <img :src="cover" v-if="cover.length > 0" />
+          <img class="upload-placeholder" src="/images/upload-placeholder.jpg" v-if="cover_type == 'custom' && cover.length == 0" v-on:click="handle_choose_cover_image" />
+        </div>
+        <cropper ref="cover_cropper" :image="cover" :viewport_w="320" :viewport_h="320" :output_w="400" :output_h="400" :disable_cancel="true" :disable_button="true" v-if="cover_type == 'custom' && cover.length > 0" v-on:update="value => cover = value"></cropper>
+      </div>
+    </div>
+    <div class="tool-buttons column">
+      <div class="default-cover-color" v-show="cover_type == 'default'">
+        <h3 ref="default_cover_color_label" v-text="$t('label.background_color')"></h3>
+        {% include partial/create-form/default-cover-colors.html %}
+      </div>
+    </div>
+  </div>
+</div>

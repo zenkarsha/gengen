@@ -1,0 +1,75 @@
+.local-preview
+  position relative
+  margin 16px 0
+  line-height 0
+  max-width 400px
+
+  &.large
+    max-width unset
+    &.multiple > div
+      flex "1 1 %s" % (35% - 16px)
+      max-width calc(24% - 8px)
+      &:nth-child(2n)
+        margin-right 16px
+      &:nth-child(4n)
+        margin-right 0px
+      +below($tablet)
+        flex "1 1 %s" % (50% - 16px)
+        max-width calc(50% - 8px)
+        &:nth-child(2n)
+          margin-right 0
+
+  .image
+    img
+      __block-shadow()
+      width 100%
+      border-radius $s-radius
+      border 1px solid $color-black
+
+  .tool-buttons
+    __tool-buttons()
+
+  &.multiple
+    display flex
+    flex-wrap wrap
+    justify-content flex-start
+    > div
+      __block-shadow()
+      position relative
+      padding 16px
+      text-align center
+      box-sizing border-box
+      background-image url(/images/pattern.png)
+      background-size 24px 24px
+      border-radius $s-radius
+      border 1px solid $color-black
+      flex "1 1 %s" % (50% - 16px)
+      margin-right 16px
+      margin-bottom 16px
+      max-width calc(50% - 8px)
+      &:nth-child(2n)
+        margin-right 0
+      &.add-more
+        padding 0
+        background none
+        cursor pointer
+      .image
+        position relative
+        width 100%
+        height 0
+        padding-top 100%
+        max-width 400px
+        border-radius $s-radius
+        img
+          position absolute
+          width auto
+          height auto
+          max-width 100%
+          max-height 100%
+          top 0
+          left 0
+          right 0
+          bottom 0
+          border none
+          box-shadow none
+          margin auto

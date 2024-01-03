@@ -1,0 +1,10 @@
+__text_stoke($stroke, $color)
+  $shadow = ()
+  $from = $stroke * -1
+  $to = $stroke * 1
+  for $i in $from..$to
+    for $j in $from..$to
+      $this = join(' ', $i*1px $j*1px 0 $color)
+      push($shadow, $this)
+  $shadow = join(', ', $shadow)
+  text-shadow convert($shadow)

@@ -1,0 +1,86 @@
+<div class="form-group">
+  <h3 ref="multiple_langs_label" v-text="$t('label.multiple_language')"></h3>
+  <span class="field-message">${$t('message.multiple_language')}</span>
+  <label><input type="radio" v-model="multiple_langs" :value="true"> ${$t('label.yes')}</label>&nbsp;
+  <label><input type="radio" v-model="multiple_langs" :value="false"> ${$t('label.no')}</label>
+</div>
+<div class="form-group" v-if="multiple_langs == true">
+  <h3 ref="choose_multiple_language_label" v-text="$t('label.choose_multiple_language')"></h3>
+  <label v-for="(value, key, index) in langs" v-if="key != $route.params.lang" class="checkbox-label"><input type="checkbox" v-model="multiple_langs_select[key]" :value="key"> ${value}</label>&nbsp;
+</div>
+<div class="form-group">
+  <h3 ref="title_label" v-text="$t('label.generator_title')"></h3>
+  <span class="field-message">${$t('message.generator_title')}</span>
+  <input type="text" name="title" ref="title" v-model="title" v-on:change="handle_cover_preivew_update" v-validate="'required|max:30'" :class="{'input': true, 'is-danger': errors.has('title') }">
+  <div class="multiple-langs-field">
+    <div v-for="(value, key, index) in langs" class="form-group" v-if="multiple_langs && multiple_langs_select[key]">
+      <h3 :ref="'multiple_title_' + key + '_label'" v-text="langs[key]"></h3>
+      <input type="text" :name="'multiple_title_' + key" :ref="'multiple_title_' + key" v-model="multiple_title[key]" v-validate="'required|max:30'" :class="{'input': true, 'is-danger': errors.has('multiple_title_' + key) }">
+    </div>
+  </div>
+</div>
+<div class="form-group">
+  <h3 ref="description_label" v-text="$t('label.generator_description')"></h3>
+  <span class="field-message">${$t('message.generator_description')}</span>
+  <textarea name="description" ref="description" v-validate="'required|max:100'" :class="{'input': true, 'is-danger': errors.has('description') }" v-model="description"></textarea>
+  <div class="multiple-langs-field">
+    <div v-for="(value, key, index) in langs" class="form-group" v-if="multiple_langs && multiple_langs_select[key]">
+      <h3 :ref="'multiple_description_' + key + '_label'" v-text="langs[key]"></h3>
+      <textarea :name="'multiple_description_' + key" :ref="'multiple_description_' + key" v-validate="'required|max:100'" :class="{'input': true, 'is-danger': errors.has('multiple_description_' + key) }" v-model="multiple_description[key]"></textarea>
+    </div>
+  </div>
+</div>
+<div class="form-group">
+  <h3 ref="event_information_label" v-text="$t('label.event_information')"></h3>
+  <span class="field-message">${$t('message.event_information')}</span>
+  <textarea v-model="event_information"></textarea>
+  <div class="multiple-langs-field">
+    <div v-for="(value, key, index) in langs" class="form-group" v-if="multiple_langs && multiple_langs_select[key]">
+      <h3 :ref="'event_information_' + key + '_label'" v-text="langs[key]"></h3>
+      <textarea v-model="multiple_event_information[key]"></textarea>
+    </div>
+  </div>
+</div>
+<div class="form-group">
+  <h3 ref="tag_label" v-text="$t('label.tags')"></h3>
+  <span class="field-message">${$t('message.tags')}</span>
+  <input type="tags" ref="tags">
+  <div class="multiple-langs-field">
+    <div class="form-group" v-show="multiple_langs && multiple_langs_select['en']">
+      <h3 ref="tag_en_label" v-text="langs['en']"></h3>
+      <input type="tags" ref="tags_en">
+    </div>
+    <div class="form-group" v-show="multiple_langs && multiple_langs_select['ja']">
+      <h3 ref="tag_ja_label" v-text="langs['ja']"></h3>
+      <input type="tags" ref="tags_ja">
+    </div>
+    <div class="form-group" v-show="multiple_langs && multiple_langs_select['zh_hant']">
+      <h3 ref="tag_zh_hant_label" v-text="langs['zh_hant']"></h3>
+      <input type="tags" ref="tags_zh_hant">
+    </div>
+    <div class="form-group" v-show="multiple_langs && multiple_langs_select['zh_hans']">
+      <h3 ref="tag_zh_hans_label" v-text="langs['zh_hans']"></h3>
+      <input type="tags" ref="tags_zh_hans">
+    </div>
+  </div>
+</div>
+<div class="form-group">
+  <h3 ref="image_copyright_label" v-text="$t('label.image_copyright')"></h3>
+  <span class="field-message">${$t('message.image_copyright')}</span>
+  <div class="vertical-labels">
+    <label><input type="radio" v-model="image_copyright" :value="1"> ${$t('text.personally_created_images')}</label>
+    <label><input type="radio" v-model="image_copyright" :value="2"> ${$t('text.cc_license_images')}</label>
+    <label><input type="radio" v-model="image_copyright" :value="3"> ${$t('text.legally_authorized_images')}</label>
+    <label><input type="radio" v-model="image_copyright" :value="4"> ${$t('text.other_copyright_state')}</label>
+  </div>
+</div>
+<div class="form-group">
+  <h3 ref="image_copyright_notice_label" v-text="$t('label.image_copyright_notice')"></h3>
+  <span class="field-message">${$t('message.image_copyright_notice')}</span>
+  <textarea name="image_copyright_notice" ref="image_copyright_notice" v-model="image_copyright_notice"></textarea>
+</div>
+<div class="form-group" v-if="user && user.isAnonymous == false">
+  <h3 ref="public_label" v-text="$t('label.generator_privacy')"></h3>
+  <label><input type="radio" v-model="public" :value="true"> ${$t('text.public')}</label>&nbsp;
+  <label><input type="radio" v-model="public" :value="false"> ${$t('text.unlist')}</label>
+</div>

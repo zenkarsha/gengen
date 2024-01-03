@@ -1,0 +1,31 @@
+---
+permalink: /template/generators/official/windows-xp-alert.html
+---
+
+<div class="template-wrapper generator-template-wrapper generator-windows-xp-alert">
+  <div id="generator_container">
+    <div id="generator_preview" ref="generator_preview">
+      <div class="preview-area shadow">
+        <div class="preview-area-wrapper">
+          <div class="loading" v-bind:class="{ 'on': loading_preview }">
+            <spinner></spinner>
+          </div>
+          <img :src="preview_image" />
+        </div>
+      </div>
+      <div id="output_container">
+        <img ref="basemap_image" :src="basemap_image" />
+        <div v-for="(item, index) in text_config" ref="item.key" :class="['text']" v-html="nl2br(html_encode(item.text))" :style="{ left: px(item.left_offset), top: px((canvas_h - (12 * item.max_lines)) * .5 + item.top_offset ), width: px(item.width), height: px(18 * item.max_lines) }"></div>
+      </div>
+    </div>
+    <div id="generator_form">
+      <div class="form-input">
+        <div class="form-group" v-for="(item, index) in text_config">
+          <h3 v-text="item.label_text"></h3>
+          <textarea ref="item.key + '_input'" v-model="text_config[index].text" v-on:focus="$event.target.select()" v-on:keydown="update_countdown"></textarea>
+        </div>
+      </div>
+      <generator-action-buttons v-on:action="value => generator(value)"></generator-action-buttons>
+    </div>
+  </div>
+</div>

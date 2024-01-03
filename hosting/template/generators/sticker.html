@@ -1,0 +1,77 @@
+---
+permalink: /template/generators/sticker.html
+---
+
+<div class="template-wrapper generator-template-wrapper generator-sticker">
+  <drag-upload-zone @callback="value => load_preview(value, 'basemap_image', false)"></drag-upload-zone>
+  <div id="generator_container" ref="generator_container" v-bind:style="[is_desktop && container_w != 0 && container_h != 0 ? { width: px(container_w), height: px(container_h), maxHeight: 'unset' } : '']">
+    <div id="generator_preview">
+      <div class="preview-area">
+        <div class="draggable-container-wrapper">
+          <div class="draggable-container" :style="{ width: px(preview_w) , height: px(preview_h) }">
+            <draggable-element class="draggable-wrapper resizable" :w="sticker_w" :h="sticker_h" :x="sticker_x" :y="sticker_y" :containment="'.draggable-zone'" @dragged="handle_dragged" :style="{ width: px(sticker_w) , height: px(sticker_h), top: px(sticker_y), left: px(sticker_x) }">
+              <img id="sticker_image" :src="q_auto(sticker_image)" />
+              <div class="loading" v-bind:class="{ 'on': loading_sticker }">
+                <spinner></spinner>
+              </div>
+              <div class="ui-resizable-handle ui-resizable-nw"></div>
+              <div class="ui-resizable-handle ui-resizable-sw"></div>
+              <div class="ui-resizable-handle ui-resizable-se"></div>
+            </draggable-element>
+          </div>
+          <div id="basemap_container" ref="basemap_container">
+            <div class="image-wrapper">
+              <div class="image">
+                <draggable-zone class="draggable-zone" :container_w="preview_w" :container_h="preview_h" :object_w="sticker_w" :object_h="sticker_h" :type="'sticker'"></draggable-zone>
+                <img id="basemap_image" ref="basemap_image_preview" :src="q_auto(basemap_image)" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tool-buttons">
+        <div class="button-group">
+          <button type="button" class="button danger icon rounded" v-on:click="merge_image">
+            <i class="flaticon-merge"></i>
+            <span>${$t('button.merge_image')}</span>
+          </button>
+          <button type="button" class="button rounded icon" v-on:click="handle_history('-')" :disabled="history.length == 0 || current_history == 0" v-if="history.length > 0"><i class="flaticon-undo"></i></button>
+          <button type="button" class="button rounded icon" v-on:click="handle_history('+')" :disabled="history.length == 0 || history.length == current_history + 1" v-if="history.length > 0"><i class="flaticon-redo"></i></button>
+        </div>
+        <div class="button-group">
+          <vintage-filter :image="basemap_image" :class_name="'button gray rounded icon'" :button_text="''" v-on:update="value => basemap_image = value" v-if="basemap_image != ''"></vintage-filter>
+        </div>
+      </div>
+    </div>
+    <div id="output_container">
+      <div class="sticker" :style="{ width: px(sticker_w * scale) , height: px(sticker_h * scale), top: px(sticker_y * scale), left: px(sticker_x * scale), transform: 'rotate(' + sticker_rotate + 'rad)' }">
+        <img :src="q_auto(sticker_image)" />
+      </div>
+      <img :src="q_auto(basemap_image)" />
+    </div>
+    <div id="generator_form">
+      <div class="form-input">
+        <div class="form-group">
+          <h3 v-text="$t('title.upload_image')"></h3>
+          <div class="fileupload-button">
+            <input ref="basemap_image" type="file" v-on:change="handle_basemap_change" accept="image/*">
+            <button type="button" class="button rounded" v-on:click="$refs.basemap_image.click()">
+              <i class="flaticon-upload padding-right"></i>
+              ${$t('button.choose_image')}
+            </button>
+          </div>
+        </div>
+        <div class="form-group">
+          <h3 v-text="$t('title.choose_sticker')"></h3>
+          <div id="sticker_list_container" class="image-select-list">
+            <label v-for="item in config.sticker_images" :class="{ 'active' : item == sticker_image_select }">
+              <div class="image-item" :style="{ backgroundImage: 'url(' + item.replace('/image/upload/', '/image/upload/w_80,q_auto/') + ')' }"></div>
+              <input type="radio" v-model="sticker_image_select" :value="item">
+            </label>
+          </div>
+        </div>
+      </div>
+      <generator-action-buttons :preview_mode="typeof config.preview_mode != 'undefined' ? true : false" v-on:action="value => generator(value)"></generator-action-buttons>
+    </div>
+  </div>
+</div>

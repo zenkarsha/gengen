@@ -1,0 +1,53 @@
+---
+permalink: /template/generator-official.html
+---
+
+<div class="template-wrapper generator-official-page">
+  <div class="generator-header container" v-if="config.title">
+    <div class="section generator-header" v-if="config.title">
+      <div class="header-wrapper">
+        <div class="header-avatar" :style="{ backgroundImage: 'url(' + q_avatar(config.cover) + ')' }"></div>
+        <div class="header-info">
+          <h1 v-text="config.title"></h1>
+          <div class="social-buttons">
+            <iframe :src="'https://www.facebook.com/plugins/like.php?href=' + encodeURIComponent(config.share_link) + '&width=92&layout=button_count&action=like&size=small&show_faces=false&share=false&height=21&appId=221763288547490'" width="92" height="21" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+            <social-share :link="config.share_link"></social-share>
+          </div>
+        </div>
+      </div>
+      <div class="generator-description">
+        <div class="description-wrapper">
+          <p v-text="config.description"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="generator-panel">
+    <div class="panel-wrapper">
+      <component v-bind:is="load_template" v-bind:config="config"></component>
+    </div>
+  </div>
+  <div class="section feed-list overview" v-if="config.gid && list.length > 0">
+    <div class="container">
+      <h3 class="headline center">
+        ${$t('title.user_submissions')}
+      </h3>
+      <div v-if="!empty_list">
+        <ul class="list center">
+          <li class="list-item" v-for="item in list" :key="item.pid">
+            <feed-list-item :config="item" :small_image="true"></feed-list-item>
+          </li>
+        </ul>
+        <div class="show-more">
+          <router-link :to="{name: 'feed', params: {lang: $route.params.lang, gid: config.gid}}" class="button rounded">
+            ${$t('button.view_list')}
+            <i class="flaticon-right-arrow padding-left"></i>
+          </router-link>
+        </div>
+      </div>
+      <div v-if="empty_list">
+        <h4 v-text="$t('text.empty_list')"></h4>
+      </div>
+    </div>
+  </div>
+</div>

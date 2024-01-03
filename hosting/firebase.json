@@ -1,0 +1,28 @@
+{
+  "hosting": {
+    "public": "public",
+    "rewrites": [
+      {
+        "source": "/**/g/**",
+        "function": "loadGeneratorSource"
+      },
+      {
+        "source": "/**/official/**",
+        "function": "loadOfficialGeneratorSource"
+      },
+      {
+        "source": "/**/post/**",
+        "function": "loadFeedPostSource"
+      },
+      {
+        "source": "/sitemap.txt",
+        "function": "createSitemap"
+      }
+    ],
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

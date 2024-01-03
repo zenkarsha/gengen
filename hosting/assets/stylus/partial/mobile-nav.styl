@@ -1,0 +1,96 @@
+.mobile-nav-overlay
+  display flex
+  position fixed
+  top 0
+  right 0
+  bottom 0
+  left 0
+  z-index 1900
+  background rgba(0, 0, 0, .8)
+
+
+.mobile-nav
+  position fixed
+  background $color-gray-yellow
+  width 100vw
+  height 100vh
+  padding 16px 24px
+  top 0
+  right 0
+  z-index 2000
+  display flex
+  flex-direction column
+  flex 1
+
+  .mobile-nav-items
+    align-items stretch
+    flex 1
+    a
+      display block!important
+      font-size 1.2rem!important
+      margin 8px 0
+      &:first-child
+        margin-bottom 0
+      &:last-child
+        margin-top 0
+      &:after, &:hover:after, &:focus:after
+        display none!important
+
+  .mobile-nav-close-button
+    position absolute
+    top 28px
+    right 12px
+    +tablet()
+      right 24px
+    .button
+      width 50px
+      height 50px
+      margin 0
+      padding 0 !important
+      display flex
+      justify-content center
+      align-items center
+      span
+        display block
+        position relative
+        width 20px
+        height 2px
+        margin auto
+        &:before, &:after
+          content ''
+          position absolute
+          width 20px
+          height 2px
+          left 0
+          background-color white
+          border-radius $l-radius
+        &:before
+          transform rotate(45deg)
+        &:after
+          transform rotate(-45deg)
+
+.mobile-nav-button
+  width 50px
+  height 50px
+  line-height 54px
+  display flex
+  justify-content center
+  align-items center
+  cursor pointer
+  span
+    position relative
+    width 20px
+    height 2px
+    background-color $color-black
+    border-radius $l-radius
+    &:before, &:after
+      content ''
+      position absolute
+      width 20px
+      height 2px
+      background-color $color-black
+      border-radius $l-radius
+    &:before
+      top -6px
+    &:after
+      top 6px

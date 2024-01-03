@@ -1,0 +1,67 @@
+.cr-slider-wrap
+  width 100%!important
+  margin 16px auto
+
+
+.cr-slider
+  width calc(100% - 64px)
+  -webkit-appearance none
+  background transparent
+  position relative
+
+  &:before
+  &:after
+    width 20px
+    height 20px
+    line-height 20px
+    display inline-flex
+    justify-content center
+    color $color-white
+    background lighten($color-black, 20%)
+    border 0
+    border-radius 50%
+    cursor pointer
+    position absolute
+    font-size 80%
+
+  &:before
+    content '−'
+    left -28px
+    top 3px
+
+  &:after
+    content '＋'
+    right -28px
+    top 3px
+
+  &::-webkit-slider-thumb
+    background lighten($color-black, 50%)
+    width 16px
+    height 16px
+    border-radius 50%
+    margin-top -3px
+    cursor move
+
+  &::-moz-range-thumb
+    background lighten($color-black, 50%)
+    width 16px
+    height 16px
+    border-radius 50%
+    margin-top -3px
+    cursor move
+
+  &::-webkit-slider-runnable-track
+    height 10px
+    background darken($color-black, 10%)
+    border 0
+    border-radius 10px
+
+  &::-moz-range-track
+    height 10px
+    background darken($color-black, 10%)
+    border 0
+    border-radius 10px
+
+
+.cr-slider:focus
+  outline none

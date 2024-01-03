@@ -1,0 +1,58 @@
+.header-search
+  display flex
+  position relative
+
+  .search-input-wrapper
+    display flex
+    justify-content flex-end
+    #search_input
+      width 0%
+      transition width .1s
+      transition-timing-function cubic-bezier(0, 0, 1, 1)
+      input[type=text]
+        border none
+        border-bottom 2px solid $color-gray
+        border-radius 0
+        padding 4px 0
+        box-shadow none!important
+        font-size 1rem
+        &:focus
+          border-bottom 2px solid $color-black
+      &.on
+        width 100%
+        input[type=text]
+          padding 4px
+    .button
+      &:focus
+        outline none
+
+  #search_result
+    __block-shadow()
+    position absolute
+    top calc(100% + 8px)
+    left 0
+    z-index 1000
+    width 400px
+    max-height 400px
+    overflow-y scroll
+    background $color-white
+    border 1px solid $color-black
+    .search-result-item
+      display block
+      padding 16px
+      display flex
+      justify-content flex-start
+      align-items flex-start
+      .item-cover
+        margin-right 16px
+        img
+          width 64px
+          height 64px
+      .item-content
+        h3
+          padding 0
+          margin 0
+        p
+          margin-top 8px
+          margin-bottom 0
+          color $color-black-light

@@ -1,0 +1,299 @@
+.generator-list
+  h2
+    padding 0 32px
+
+  .list
+    display flex
+    flex-wrap wrap
+    align-items stretch
+    margin 0
+    +above($desktop)
+      margin-left -16px
+      margin-right -16px
+
+  .list-item
+    display flex
+    align-items stretch
+    width 100%
+    margin 16px 0
+    +above($tablet)
+      width "calc(100% / 2 - %s)" % 32px
+      margin 16px
+    +above($desktop)
+      width "calc(100% / 3 - %s)" % 32px
+      margin 16px
+    +below($tablet)
+      margin 0
+    .item-wrapper
+      width 100%
+      border-radius $s-radius
+      margin-bottom 24px
+      position relative
+      +below($tablet)
+        margin-bottom 40px
+      &:hover
+        .item-cover:after
+          opacity 1
+          +below($desktop)
+            display none
+        .item-label
+          opacity 0
+          +below($desktop)
+            opacity 1
+      a
+        width 100%
+        display flex
+        flex-wrap wrap
+      .item-label
+        position absolute
+        display block
+        opacity 1
+        transition opacity .5s
+        display flex
+        top 8px
+        right 8px
+        z-index 100
+        > span
+          padding 6px 12px
+          border-radius $m-radius
+          color $color-white
+          margin-right 8px
+          &:last-child
+            margin-right 0
+        .new
+          background transparentify($color-black)
+        .hot
+          background transparentify($color-red)
+        .fun
+          color $color-black
+          background $color-yellow
+          font-style italic
+    .item-cover-wrapper
+      display flex
+      justify-content center
+      align-items flex-end
+      position relative
+      width 100%
+      height 0
+      padding-top 60%
+      margin-bottom 24px
+      overflow hidden
+      +below($tablet)
+        margin-bottom 8px
+    .item-cover
+      width 100%
+      height 0
+      padding-top 60%
+      background-size cover
+      background-position center 48%
+      background-repeat no-repeat
+      border-radius $m-radius
+      cursor pointer
+      &:after
+        content attr(data-link-text)
+        display flex
+        justify-content center
+        align-items center
+        position absolute
+        color $color-white
+        font-size 1.75rem
+        font-weight 200
+        letter-spacing .1rem
+        top 0
+        left 0
+        right 0
+        bottom 0
+        background-color transparentify(lighten($color-black, 20%))
+        opacity 0
+        transition opacity .5s
+        border-radius $m-radius
+        +below($tablet)
+          display none
+    .item-avatar
+      width 48px
+      height 48px
+      border-radius 50%
+      margin-right 16px
+      background-repeat no-repeat
+      background-position center
+      background-size cover
+      background-image url(/images/avatar-placeholder.jpg)
+    .item-info
+      flex 1
+      display flex
+      align-items center
+      flex-wrap wrap
+    .item-title
+      width 100%
+      margin 0 0 4px
+      font-size 1.25rem
+      line-height 1.2
+      font-weight 500
+    .item-template
+      display inline-flex
+      align-items center
+      margin-right 16px
+      padding 2px 0
+      font-size .75rem
+      opacity .5
+      &:before
+        content ''
+        display inline-block
+        margin-right 4px
+        width 16px
+        height 16px
+        background-size contain
+      &.avatar:before
+        background-image url('/images/icon/avatar.svg')
+      &.subtitle:before
+        background-image url('/images/icon/subtitle.svg')
+      &.sticker:before
+        background-image url('/images/icon/sticker.svg')
+      &.quote:before
+        background-image url('/images/icon/quote.svg')
+      &.cover:before
+        background-image url('/images/icon/cover.svg')
+      &.meme:before
+        background-image url('/images/icon/meme.svg')
+    .item-creator
+      display inline-flex
+      align-items center
+      padding 2px 0
+      font-size .75rem
+      opacity .5
+      &:before
+        content ''
+        display inline-block
+        margin-right 4px
+        width 16px
+        height 16px
+        background-size contain
+        background-image url('/images/icon/creator.svg')
+
+  .list-end-spacer
+    display none
+
+  .show-more-button
+    text-align center
+    margin auto
+    padding-bottom 32px
+
+  .list.placeholder
+    position relative
+    .list-item
+      .item-cover, .item-avatar
+        background-color $color-gray-yellow
+        cursor default
+      .item-wrapper:hover .item-cover:after
+        opacity 0
+      .item-title, .item-template, .item-creator
+        background $color-gray-yellow
+      .item-title
+        width 90%
+      .item-template, .item-creator
+        width 40%
+        &:before
+          display none
+
+  &.highlight
+    .list
+      margin 0
+      &.placeholder
+        .list-item
+          .item-info
+            width 100%
+          .item-title, .item-template, .item-creator
+            background $color-white
+            text-shadow none
+          .item-title
+            width 90%
+          .item-template:after
+            display none
+    .list-item
+      margin 0!important
+      padding 0
+      border none
+      background none
+      box-shadow none
+      +above($tablet)
+        width 50%
+    .item-cover-wrapper
+      margin 0
+    .item-cover
+      border-radius 0
+    .item-cover:after
+    .item-label .new
+    .item-avatar
+      display none
+    .item-info
+      position absolute
+      left 32px
+      bottom 32px
+      width calc(100% - 64px)
+      color $color-white
+      text-shadow 0 0 10px rgba(0, 0, 0, .75)
+      +below($desktop)
+        left 16px
+        bottom 16px
+        width calc(100% - 32px)
+    .item-title
+      width 100%
+      margin 0
+      margin-bottom 4px
+      font-size 2rem
+      font-weight 800
+      color $color-white
+      text-shadow 0 0 10px rgba(0, 0, 0, .75)
+      +below($tablet)
+        font-weight 600
+    .item-description
+      margin 4px 0 8px
+      width 100%
+      font-size 1.1rem
+      text-shadow 0 0 10px rgba(0, 0, 0, .75)
+    .item-template
+    .item-creator
+      opacity 1
+      background $color-gray-yellow
+      color $color-black
+      border-radius $s-radius
+      text-shadow none
+      padding 4px 6px
+      +below($tablet)
+        zoom .75
+    .item-template
+      margin-right 4px
+
+  &.home-list
+    .list
+      margin-left 16px
+      margin-right 16px
+      +below($desktop)
+        margin 0
+        flex-wrap nowrap
+        overflow-x auto
+        -webkit-overflow-scrolling touch
+        -ms-overflow-style -ms-autohiding-scrollbar
+    .item-wrapper
+      +below($desktop)
+        margin-bottom 0
+    .list-item
+      +below($desktop)
+        width calc(50% - 64px)
+        padding 12px
+        flex 0 0 auto
+        margin-bottom 24px!important
+        margin-right 12px!important
+        background white
+        border 1px solid $color-gray-light
+        box-shadow 2px 2px 5px rgba(0, 0, 0, 0.05)
+        &:first-child
+          margin-left 24px!important
+        &:last-child
+          margin-right 32px!important
+      +below($tablet)
+        width calc(100% - 64px)
+        margin 0
+    .list-end-spacer
+      display block
+      padding-right 16px

@@ -1,0 +1,18 @@
+<div class="form-steps" ref="form_steps">
+  <div :class="['step', form_step == 0 ? 'active' : '']">
+    <div class="step-number" v-on:click="form_step = 0">0</div>
+    <span class="step-title" v-text="$t('title.choose_template')"></span>
+  </div>
+  <div :class="['step', form_step == 1 ? 'active' : '']">
+    <div class="step-number" v-on:click="template != '' ? form_step = 1 : false">1</div>
+    <span class="step-title" v-text="$t('title.basic_information')"></span>
+  </div>
+  <div :class="['step', form_step == 2 ? 'active' : '']">
+    <div class="step-number" v-on:click="template != '' && title != '' && description != '' ? form_step = 2 : false">2</div>
+    <span class="step-title" v-text="$t('title.upload_cover')"></span>
+  </div>
+  <div :class="['step', form_step == 3 ? 'active' : '']">
+    <div class="step-number" v-on:click="template != '' && title != '' && description != '' ? form_step = 3 : false">3</div>
+    <span class="step-title" v-text="$t('title.create_generator')"></span>
+  </div>
+</div>

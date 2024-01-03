@@ -1,0 +1,50 @@
+---
+permalink: /template/generators/subtitle.html
+---
+
+<div class="template-wrapper generator-template-wrapper generator-subtitle">
+  <div id="generator_container">
+    <div id="generator_preview" ref="generator_preview">
+      <div class="preview-area shadow">
+        <div class="preview-area-wrapper">
+          <div class="loading" v-bind:class="{ 'on': loading_preview }">
+            <spinner></spinner>
+          </div>
+          <img :src="preview_image" />
+        </div>
+      </div>
+      <div id="output_container">
+        <img ref="basemap_image" :src="basemap_image" />
+        <div ref="subtitle_text" :class="['subtitle-text shadow', Math.floor((subtitle_size - 10)*.1) > 8 ? 'stroke-8' : 'stroke-' + Math.floor((subtitle_size - 10)*.1)]" v-html="nl2br(html_encode(subtitle_text))" :style="{ left: px(subtitle_x), top: px(subtitle_y), fontSize: px(subtitle_size) }"></div>
+        <div ref="subtitle_text" :class="['subtitle-text text']" v-html="nl2br(html_encode(subtitle_text))" :style="{ left: px(subtitle_x), top: px(subtitle_y), fontSize: px(subtitle_size) }"></div>
+      </div>
+    </div>
+    <div id="generator_form">
+      <div class="form-input">
+        <div class="form-group">
+          <h3 v-text="$t('title.design_subtitle')"></h3>
+          <textarea ref="subtitle_input" v-model="subtitle_input" v-on:focus="$event.target.select()" v-on:keydown="update_countdown"></textarea>
+        </div>
+        <div class="form-group">
+          <h3 v-text="$t('title.text_size')"></h3>
+          <zoom-slider ref="text_size_slider" :min="20" :max="100" :step="10" :default="subtitle_size" @changed="value => subtitle_size = value" v-once></zoom-slider>
+        </div>
+        <div class="form-group">
+          <h3 v-text="$t('title.text_position')"></h3>
+          <label><input type="radio" v-model="text_positon" :value="'bottom'"> ${$t('text.bottom')}</label>&nbsp;
+          <label><input type="radio" v-model="text_positon" :value="'top'"> ${$t('text.top')}</label>
+        </div>
+        <div class="form-group">
+          <h3 v-text="$t('title.choose_background_image')"></h3>
+          <div id="basemap_list_container" class="image-select-list">
+            <label v-for="item in config.basemap_images" :class="{ 'active' : q_auto(item) == basemap_image_select }">
+              <div class="image-item" :style="{ backgroundImage: 'url(' + q_label(item) + ')' }"></div>
+              <input type="radio" v-model="basemap_image_select" :value="q_auto(item)">
+            </label>
+          </div>
+        </div>
+      </div>
+      <generator-action-buttons v-on:action="value => generator(value)"></generator-action-buttons>
+    </div>
+  </div>
+</div>

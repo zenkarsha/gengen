@@ -1,0 +1,72 @@
+.section.hero
+  display flex
+  justify-content left
+  align-items center
+  width 100vw
+  height 600px
+  position relative
+  margin-bottom 32px
+
+  +below($tablet)
+    display block
+    height auto
+
+  &:before
+    content ''
+    position absolute
+    left 32px
+    bottom 32px * -1
+    width "calc(100% - %s)" % (32px * 2)
+    border-bottom 1px solid #eee
+
+  .hero-wrapper
+    margin-left 10%
+    opacity 0
+    transform scale(.8)
+    animation baker-appear .3s ease-in-out 1
+    animation-delay .3s
+    animation-fill-mode forwards
+    +below($tablet)
+      text-align center
+      width calc(100% - 32px)
+      margin 0 16px
+    .mobile-baker
+      display none
+      margin-bottom 32px
+      width 100%
+      +below($tablet)
+        display block
+      img
+        width auto
+        height auto
+        max-height 320px
+        max-width 100%
+        margin auto
+    .slogan
+      __font('hei')
+      max-width 440px
+      font-size 2.5rem
+      line-height 3.2rem
+      font-weight normal
+      color $color-black
+      margin 0 0 32px
+      padding 0
+      +below($tablet)
+        font-size 2rem
+        line-height 2.5rem
+        max-width 90%
+        margin auto
+        margin-bottom 16px
+    .introduce
+      max-width 100%
+      +below($tablet)
+        max-width 100%
+        p
+          width 90%
+          margin auto
+          margin-bottom 16px
+          font-size 80%
+          line-height 1.5
+      p
+        margin-bottom 48px
+        color lighten($color-black, 30%)

@@ -1,0 +1,65 @@
+.generator-sticker
+  .draggable-container-wrapper
+    width 100%
+    height 100%
+    display flex
+    justify-content flex-start
+    align-items flex-start
+    position relative
+
+    .draggable-container
+      margin auto
+
+  #generator_preview
+    min-height 100vh
+    overflow visible!important
+
+    +below($desktop)
+      min-height unset
+
+    #basemap_container
+      position relative
+      background-repeat no-repeat
+      line-height 0
+      width 100%
+      height 100%
+      .tool-buttons
+        position absolute
+        top calc(100% + 16px)
+        left 0
+      .image-wrapper
+        width 100%
+        height 100%
+        text-align center
+        display flex
+        justify-content center
+        align-items center
+        .image
+          width auto
+          height 100%
+          position relative
+          display flex
+          +below($desktop)
+            height auto
+            max-height 100%
+            justify-content center
+            align-items center
+        img
+          width auto
+          height auto
+          max-width 100%
+          max-height 100%
+          margin auto
+          object-fit contain
+          +below($desktop)
+            max-height 50vh
+
+  #output_container
+    background-color white
+    line-height 0
+
+    .sticker
+      position absolute
+      img
+        width 100%
+        height 100%

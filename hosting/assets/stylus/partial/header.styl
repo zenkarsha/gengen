@@ -1,0 +1,74 @@
+#header
+  box-sizing border-box
+  padding 24px 0
+  position absolute
+  width 100vw
+  top 0
+  left 0
+  z-index 50001
+
+  .login &
+    display none
+
+  .container
+    display flex
+    justify-content space-between
+    align-items center
+
+  .logo
+    width 350px
+    height 128px
+    background-position left center
+    +below($tablet)
+      width 240px
+      height 72px
+
+  .header-nav
+    display flex
+    justify-content center
+    align-items center
+    &.mobile-view
+      display none
+    i
+      font-size 85%
+    a
+      display flex
+      justify-content center
+      align-items center
+      padding 8px
+      font-size .95rem
+      text-transform uppercase
+      span
+        position relative
+        display inline-block
+        vertical-align middle
+      span:after
+        content ''
+        display block
+        margin 0 auto
+        height 1px
+        width 0%
+        background $color-black
+        transition width $t-sec
+      &:hover span:after,
+      &.router-link-active span:after
+        width: 100%
+      &:first-child
+        margin-left 0
+      &:last-child
+        margin-right 0
+    .button
+      &:after
+        display none
+
+  +below($desktop)
+    padding 16px 0
+    .header-nav
+      &.desktop-view
+        display none
+      &.mobile-view
+        display block
+
+  +above($desktop)
+    .header-nav a
+      margin 0 8px

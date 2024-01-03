@@ -1,0 +1,21 @@
+---
+permalink: /template/generator-list.html
+---
+
+<div class="template-wrapper generator-list-page">
+  <span class="force-update">${force_update}</span>
+  <div class="container">
+    <div class="section page-header center">
+      <div class="header-wrapper none-flex">
+        <h1 v-text="$t('nav.generator_list')"></h1>
+        <div class="generator-list-nav">
+          <router-link :to="{name: 'generator_list', params: {lang: $route.params.lang}}" v-text="$t('nav.newest_list')"></router-link>
+          <router-link :to="{name: 'popular_list', params: {lang: $route.params.lang}}" v-text="$t('nav.popular_list')"></router-link>
+          <router-link :to="{name: 'most_used_list', params: {lang: $route.params.lang}}" v-text="$t('nav.most_used_list')"></router-link>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% include partial/generator-list.html %}
+  <section-tag></section-tag>
+</div>

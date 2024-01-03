@@ -1,0 +1,58 @@
+.feed-item
+  margin auto
+
+  .feed-post
+    __block-shadow()
+    border-radius $m-radius
+    background $color-white
+    .post-image
+      display block
+      text-align center
+      border-top-left-radius $m-radius
+      border-top-right-radius $m-radius
+      background $color-black
+      padding 32px
+      +below($tablet)
+        padding 0
+      img
+        display flex
+        max-width 100%
+        max-height 80vh
+        margin auto
+    .post-body
+      padding 24px
+      .message
+        margin-bottom 32px
+        span
+          display block
+          margin-bottom 8px
+          &:last-child
+            margin-bottom 0
+
+      .image-info
+        > a
+          color lighten($color-black, 50%)!important
+        > span
+          margin 16px 0
+          margin-right 16px
+          cursor default
+          font-size 90%
+          color lighten($color-black, 50%)
+          user-select none!important
+        +below($tablet)
+          .image-creator
+            display block
+            margin 0
+
+  .image-share
+    width 100%
+    margin-top 40px
+    .social-share-buttons
+      margin 0px -4px
+      margin-top 16px
+      padding 0
+      justify-content flex-start
+      flex-flow row wrap
+      .social-button
+        margin 12px 4px
+

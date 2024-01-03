@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+  <defs>
+    <rect id="avatar-a" width="18" height="18" rx="4.5"/>
+  </defs>
+  <g fill="none" fill-rule="evenodd" transform="translate(1 1)">
+    <mask id="avatar-b" fill="#fff">
+      <use xlink:href="#avatar-a"/>
+    </mask>
+    <rect width="17" height="17" x=".5" y=".5" stroke="#4A4A4A" rx="4.5"/>
+    <circle cx="9" cy="9" r="3.375" stroke="#4A4A4A" stroke-width="1.125" mask="url(#avatar-b)"/>
+    <path stroke="#4A4A4A" stroke-width="1.125" d="M14.5615439,17.1522942 C14.152769,14.4478929 11.8184595,12.375 9,12.375 C6.18307462,12.375 3.8497724,14.4456369 3.43912531,17.1478786" mask="url(#avatar-b)"/>
+  </g>
+</svg>

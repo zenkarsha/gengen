@@ -1,0 +1,49 @@
+---
+permalink: /template/feed.html
+---
+
+<div class="template-wrapper feed-page">
+  <div class="container">
+    <div class="section page-header no-border">
+      <div class="container">
+        <div class="header-wrapper center">
+          <h1 v-if="generator.title">
+            ${generator.multiple_langs && generator.multiple_langs_select[$route.params.lang] ? generator.multiple_title[$route.params.lang] : generator.title}${$t('title.generator_feed')}
+          </h1>
+          <div class="header-button">
+            <router-link :to="{ name: generator.official ? 'official' : 'gen', params: { gid: gid }}" class="button rounded small">
+              <i class="flaticon-lightning-electric-energy padding-right"></i>
+              ${$t('button.use_generator')}
+            </router-link>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section gray feed-list">
+    <div class="container">
+      <div v-if="!empty_list">
+        <ul class="list" v-show="list.length > 0">
+          <li class="list-item" v-for="item in list" :key="item.pid">
+            <feed-list-item :config="item"></feed-list-item>
+          </li>
+        </ul>
+        <ul class="list placeholder" v-if="list.length == 0">
+          <li class="list-item" v-for="i in 12">
+            <feed-list-placeholder></feed-list-placeholder>
+          </li>
+        </ul>
+        <div class="show-more" v-if="!no_more_data && list.length > 0">
+          <button type="button" class="button rounded" v-on:click="show_more">
+            ${$t('button.show_more')}
+            <i class="flaticon-plus-symbol padding-left"></i>
+          </button>
+        </div>
+      </div>
+      <div v-if="empty_list">
+        <h4 v-text="$t('text.empty_list')"></h4>
+      </div>
+    </div>
+  </div>
+  <page-not-found v-if="loading_failed"></page-not-found>
+</div>
